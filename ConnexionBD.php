@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 //Cette classe permet de se connecter à la base de données
 

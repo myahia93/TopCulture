@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 include_once "ModeleOeuvre.php";
 include_once "VueOeuvre.php";

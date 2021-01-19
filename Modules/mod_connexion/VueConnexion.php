@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 
 class VueConnexion
@@ -11,7 +15,8 @@ class VueConnexion
             <div class="topPage">
                 <div class="bande_horizontale_connexion mx-auto mb-4 mt-3">
                     <div class="imageConnexion">
-                        <a href="index.php?module=acceuil"><img class="mx-auto d-block" src="Ressources/logobon.png"
+                        <a href="index.php?module=acceuil"><img class="mx-auto d-block"
+                                                                src="Ressources/Page_D_Acceuil/logobon.png"
                                                                 alt="logo" width="150"/></a>
                     </div>
                     <div class=" formulaire text-center">
@@ -47,7 +52,8 @@ class VueConnexion
             <div class="topPage">
                 <div class="bande_horizontale_connexion mx-auto mb-4 mt-3">
                     <div class="imageConnexion">
-                        <a href="index.php?module=acceuil"><img class="mx-auto d-block" src="Ressources/logobon.png"
+                        <a href="index.php?module=acceuil"><img class="mx-auto d-block"
+                                                                src="Ressources/Page_D_Acceuil/logobon.png"
                                                                 alt="logo" width="150"/></a>
                     </div>
                     <div class=" formulaire text-center">

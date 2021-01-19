@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 include_once "ConnexionBD.php";
 
@@ -21,33 +25,36 @@ class ModeleTop extends ConnexionBD
     public function modeleCreationTop($nomTop, $theme)
     {
         if (isset($_SESSION['nom_utilisateur'])) {
-            //on recupere l'id de l'utilisateur
-            $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
-            $selectID->execute([$_SESSION['nom_utilisateur']]);
-            $recupId = $selectID->fetch();
-            $iduser = $recupId["idUtilisateur"];
+            try {
+                //on recupere l'id de l'utilisateur
+                $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
+                $selectID->execute([$_SESSION['nom_utilisateur']]);
+                $recupId = $selectID->fetch();
+                $iduser = $recupId["idUtilisateur"];
 
 
-            //on vérifie que l'utilisateur na pas deja de top ayant ce nom
-            $selectNomTop = self::$bdd->prepare("SELECT nomTop FROM top WHERE nomTop = ? AND idUtilisateur = ? AND idTheme = ? ");
-            $selectNomTop->execute([$nomTop, $iduser, $theme]);
-            $recupNomTop = $selectNomTop->fetch();
-            if (empty($recupNomTop["nomTop"])) {
-                try {
-                    $requeteCreationTop = self::$bdd->prepare("INSERT INTO top(nomTop, idUtilisateur, idTheme) VALUES(:nomTop, :idUtilisateur, :idTheme)");
-                    $requeteCreationTop->bindParam(':nomTop', $nomTop);
-                    $requeteCreationTop->bindParam(':idUtilisateur', $iduser);
-                    $requeteCreationTop->bindParam(':idTheme', $theme);
-                    $requeteCreationTop->execute();
-                    //$requeteCreationTop->execute([$nomTop, $iduser, $this->theme]);
-                    echo '<div class="container"><div class="alert alert-success text-center" role="alert"> Le Top a été créé !</div></div>';
-                    return true; //ajout
-                } catch (PDOException $e) {
-                    echo "Echec création du top";
+                //on vérifie que l'utilisateur na pas deja de top ayant ce nom
+                $selectNomTop = self::$bdd->prepare("SELECT nomTop FROM top WHERE nomTop = ? AND idUtilisateur = ? AND idTheme = ? ");
+                $selectNomTop->execute([$nomTop, $iduser, $theme]);
+                $recupNomTop = $selectNomTop->fetch();
+                if (empty($recupNomTop["nomTop"])) {
+                    try {
+                        $requeteCreationTop = self::$bdd->prepare("INSERT INTO top(nomTop, idUtilisateur, idTheme) VALUES(:nomTop, :idUtilisateur, :idTheme)");
+                        $requeteCreationTop->bindParam(':nomTop', $nomTop);
+                        $requeteCreationTop->bindParam(':idUtilisateur', $iduser);
+                        $requeteCreationTop->bindParam(':idTheme', $theme);
+                        $requeteCreationTop->execute();
+                        //$requeteCreationTop->execute([$nomTop, $iduser, $this->theme]);
+                        echo '<div class="container"><div class="alert alert-success text-center" role="alert"> Le Top a été créé !</div></div>';
+                        return true; //ajout
+                    } catch (PDOException $e) {
+                        echo "Echec création du top";
+                    }
+                } else {
+                    echo '<div class="container"><div class="alert alert-warning text-center" role="alert"> le top ' . $theme . ' : ' . $nomTop . ' existe déjà</div></div>';
+                    return false;
                 }
-            } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert"> le top ' . $theme . ' : ' . $nomTop . ' existe déjà</div></div>';
-                return false;
+            } catch (PDOException $e) {
             }
         } else {
             echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Connectez-vous pour pouvoir créer votre Top.</div></div>';

@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 include_once "ConnexionBD.php";
 
@@ -7,34 +11,40 @@ class ModeleConnexion extends ConnexionBD
     public function modeleSeConnecte($nomUtilisateur, $mdp)
     {
         if ($nomUtilisateur != "" && $mdp != "") {
-            //verifie le mdp hashé
-            $selectMdp = self::$bdd->prepare("SELECT mot_de_passe FROM utilisateur WHERE pseudo = ?");
-            $selectMdp->execute(array($nomUtilisateur));
-            $mdpHash = $selectMdp->fetch();
-            if (!empty($mdpHash)) {
-                $mdpCorrect = password_verify($mdp, $mdpHash["mot_de_passe"]);
+            try {
+                //verifie le mdp hashé
+                $selectMdp = self::$bdd->prepare("SELECT mot_de_passe FROM utilisateur WHERE pseudo = ?");
+                $selectMdp->execute(array($nomUtilisateur));
+                $mdpHash = $selectMdp->fetch();
+                if (!empty($mdpHash)) {
+                    $mdpCorrect = password_verify($mdp, $mdpHash["mot_de_passe"]);
 
-                if ($mdpCorrect) {
+                    if ($mdpCorrect) {
+                        try {
+                            $requeteVerif = self::$bdd->prepare("SELECT * FROM utilisateur WHERE pseudo = ? AND mot_de_passe = ?;");
+                            $requeteVerif->execute(array($nomUtilisateur, $mdpHash["mot_de_passe"]));
+                            $reponse = $requeteVerif->fetchAll(PDO::FETCH_COLUMN);
 
-                    $requeteVerif = self::$bdd->prepare("SELECT * FROM utilisateur WHERE pseudo = ? AND mot_de_passe = ?;");
-                    $requeteVerif->execute(array($nomUtilisateur, $mdpHash["mot_de_passe"]));
-                    $reponse = $requeteVerif->fetchAll(PDO::FETCH_COLUMN);
 
-                    if (!empty($reponse)) {
-                        $_SESSION['nom_utilisateur'] = $nomUtilisateur;
-                        header("Location: index.php?module=acceuil");
+                            if (!empty($reponse)) {
+                                $_SESSION['nom_utilisateur'] = $nomUtilisateur;
+                                header("Location: index.php?module=acceuil");
 
+                            } else {
+                                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Mot de passe incorrecte</div></div>';
+                                return false;
+                            }
+                        } catch (PDOException $e) {
+                        }
                     } else {
                         echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Mot de passe incorrecte</div></div>';
                         return false;
                     }
                 } else {
-                    echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Mot de passe incorrecte</div></div>';
+                    echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Utilisateur innexistant</div></div>';
                     return false;
                 }
-            } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Utilisateur innexistant</div></div>';
-                return false;
+            } catch (PDOException $e) {
             }
         }
     }

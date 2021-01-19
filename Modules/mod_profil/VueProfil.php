@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 
 class VueProfil
@@ -13,7 +17,7 @@ class VueProfil
             </div>
             <div class="row">
                 <div class="col sectionImageProfil position-relative col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-4">
-                    <img class="mx-auto d-block" src="Ressources/profil.png" alt="">
+                    <img class="mx-auto d-block" src="Ressources/Page_D_Acceuil/profil.png" alt="">
                     <div class="pseudoUtilisateur position-absolute bottom-0 start-50 translate-middle-x">
                         <p><?php echo $tab['pseudo']; ?></p>
                     </div>
