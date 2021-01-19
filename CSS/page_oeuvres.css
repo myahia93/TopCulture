@@ -1,0 +1,103 @@
+/****************************************** Page des oeuvres ******************************************/
+
+/* Section présentation de l'oeuvre */
+
+.titrePage h1 {
+    font-weight: bold;
+}
+.sectionPresentationFilm .presentationFilm {
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: rgba(0,0,0,0.2);
+    
+}
+.sectionPresentationFilm .presentationFilm p {
+    margin-bottom: 0;
+}
+.sectionPresentationFilm .presentationFilm .imageFilm img {
+    width: 200px;
+    padding-top: 20px;
+}
+.sectionPresentationFilm .presentationFilm .imageFilm {
+    width: fit-content;
+}
+.sectionPresentationFilm .presentationFilm .titreFilm {
+    width: fit-content;
+}
+.sectionPresentationFilm .presentationFilm .titreFilm .titre{
+    display: inline-block;  
+}
+.sectionPresentationFilm .presentationFilm .titreFilm p {
+    font-size: 1.6vw;
+    font-weight: bold;
+}
+.sectionPresentationFilm .presentationFilm .titreFilm .anneeDeSortie  {
+    display: inline-block;
+}
+.sectionPresentationFilm .presentationFilm .nomsRealisateurs p {
+    font-size: 16px;
+}
+.sectionPresentationFilm .presentationFilm .texteNote p {
+    font-size: 30px;
+}
+.sectionPresentationFilm .presentationFilm .noteGlobale p {
+    font-size: 120px;
+    margin-top: -45px;
+    letter-spacing: -10px;
+    color: #1E8449;
+    cursor: pointer;
+}
+
+/* Section commentaire */
+
+.sectionCommentaires h2 {
+    font-weight: bold;
+}
+.sectionCommentaires .commentaire {
+    margin-bottom: 15px;
+}
+.sectionCommentaires .commentaire .titreCom h3 {
+    font-weight: 500;
+}
+.sectionCommentaires .commentaire .comUtilisateur p {
+    margin-bottom: 0;
+    text-align: justify;
+}
+.sectionCommentaires .commentaire .noteUtilisateur p {
+    margin-bottom: 0;
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1E8449;
+}
+.sectionCommentaires .commentaire .infoUtilisateur p {
+    font-weight: 600;
+}
+
+/*Ajout*/
+.sectionCommentaires .commentaire {
+    padding: 5px;
+    border: 2px solid black;
+}
+
+/* Section formulaire */
+
+.sectionFormulaire {
+    width: 100%;
+}
+.sectionFormulaire h2 {
+    font-weight: bold;
+}
+.sectionFormulaire .formuaire .noteClient input {
+    max-width: 100px;
+}
+.sectionFormulaire .formuaire .titreAvis textarea {
+    resize: none;
+    vertical-align: top;
+}
+.sectionFormulaire .formuaire .espaceCom label {
+    margin: 10px 0;
+}
+.sectionFormulaire .formuaire .espaceCom textarea {
+    width: 100%;
+}

@@ -1,0 +1,21 @@
+/****************************************** Page galerie films ******************************************/
+
+.galeriePage .imageGalerie .galerie {
+    margin: 20px 0;
+    transition: 0.2s;
+}
+.galeriePage .imageGalerie .galerie:hover {
+    transform: translateY(-5%);
+}
+.galeriePage .imageGalerie .galerie img {
+    border: 1px solid black;
+    box-shadow: 0 0 5px 5px;
+    width: 350px;
+    height: 525px;
+}
+.galeriePage .imageGalerie .galerie .titreImageGalerie button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: 800;
+}

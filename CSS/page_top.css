@@ -1,0 +1,73 @@
+/****************************************** Page classement Tops ******************************************/
+
+.sectionClassement .boutonsPageTop {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+td:first-child:before {
+    counter-increment: case;
+    content: counter(case);
+}
+
+table {
+    counter-reset: case;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table td {
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+table tr {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+table tr td img {
+    width: 160px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+table tr td img:hover {
+    opacity: 0.9;
+}
+
+.sectionImages .galerieImgCarrousel .imgCarrousel button {
+    background-color: transparent;
+    border: none;
+}
+
+.sectionImages .galerieImgCarrousel img {
+    width: 200px;
+    height: 260px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.sectionImages .galerieImgCarrousel .boxCarrousel {
+    width: fit-content;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(68, 66, 145);
+}
+
+.sectionImages .galerieImgCarrousel .boxCarrousel:hover {
+    transform-style: preserve-3d;
+    transform: scale(1.05);
+    transition: all ease 0.4s;
+}
+
+.sectionImages .galerieImgCarrousel .boxCarrousel .titreImgCarrousel button {
+    background-color: transparent;
+    border: none;
+    width: 200px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}

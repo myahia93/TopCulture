@@ -1,0 +1,314 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url("../Ressources/Page_D_Acceuil/fond2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    margin-top: 160px;
+}
+
+/* Navigation */
+
+nav {
+    background-color: rgb(68, 66, 145);
+
+
+}
+
+.liensNavigation {
+    font-size: 16px;
+}
+
+.liensNavigation a {
+    color: white;
+}
+
+.barreDeNav {
+    width: 35vw;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.boutonConnexion {
+    display: inline;
+    margin-right: 10px;
+}
+
+.boutonConnexion a {
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+}
+
+.boutonConnexion a:hover {
+    color: rgb(13, 110, 253);
+}
+
+.boutonInscription {
+    display: inline;
+    margin-right: 10px;
+
+}
+
+.boutonInscription a {
+    text-decoration: none;
+}
+
+/* Liste top thèmes à droite */
+/*
+.themesUtilises {
+
+
+    right: 10px;
+    margin-top: 10px;
+    z-index: 1;
+    background-color: black;
+    opacity: 0.5;
+    padding: 20px;
+    border-radius: 30px;
+
+}
+.themesUtilises h4 {
+    color: white;
+    opacity: 1;
+}
+
+.themesUtilises li {
+    direction: rtl;
+    margin-right: 15px;
+    color: white;
+}
+.themesUtilises li a {
+    color: white;
+    opacity: 1;
+    float: right;
+}
+.themesUtilises li a:hover {
+    color: rgb(13, 110, 253);
+}
+*/
+
+/* Section Sliders (1 et 2) */
+
+/*.sectionSlider_1 {
+    margin-top: 200px;
+}*/
+
+.slider {
+    max-width: 800px;
+}
+
+.imageSlider {
+    position: relative;
+}
+
+.titreSlider {
+    position: absolute;
+    height: 40px;
+    background-color: black;
+    opacity: 0.8;
+    width: 100%;
+    bottom: 0;
+}
+
+.titreSlider h5 {
+    position: absolute;
+    right: 45%;
+    color: white;
+    font-weight: 600;
+}
+
+.slider_2 {
+    max-width: 1000px;
+}
+
+/* Section Top */
+
+.top {
+    width: fit-content;
+}
+
+.topPopulaires {
+    display: inline-block;
+}
+
+.topRecents {
+    display: inline-block;
+}
+
+/*Page Créer TOP CSS*/
+
+
+.bande_horizontale {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 10px;
+    width: 50%;
+    height: 300px;
+    background-color: rgb(68, 66, 145);
+
+
+}
+
+.topPage {
+    font-size: 25px;
+    color: white;
+}
+
+/*Page édition profil et signalement utilisateur CSS*/
+
+.custom-file img {
+    width: 139px;
+    height: 139px;
+}
+
+.descriptionProfil textarea {
+    width: 100%;
+    height: 100%;
+}
+
+/* Footer */
+
+footer {
+    background-color: rgb(68, 66, 145);
+}
+
+.titreFooter {
+    color: white;
+    font-weight: 600;
+}
+
+footer ul li a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+footer ul li p {
+    color: whitesmoke;
+}
+
+.footerImage {
+    box-sizing: inherit;
+    max-width: 60px;
+    max-height: 60px;
+    margin: 2px auto;
+}
+
+.copyright {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.contenu {
+    width: fit-content;
+    height: fit-content;
+}
+
+.copyright h5 {
+    color: white;
+    display: inline;
+}
+
+.copyright img {
+    width: 100px;
+}
+
+/* Media Queries */
+
+
+@media only screen and (max-width: 1400px) {
+    .topPopulaires {
+        display: block;
+    }
+
+    .topRecents {
+        display: block;
+    }
+
+    .sectionPresentationFilm .presentationFilm .titreFilm p {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .themesUtilises {
+        display: none;
+    }
+
+    .barreDeNav {
+        width: 50vw;
+        margin-left: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .boutonInscription {
+        display: block;
+        margin-top: 5px;
+    }
+
+    .topPopulaires img {
+        width: 100%;
+        height: auto;
+    }
+
+    .topRecents img {
+        width: 100%;
+        height: auto;
+    }
+
+    .sectionPresentationFilm .presentationFilm .titreFilm p {
+        font-size: 3vw;
+    }
+
+    /* Page de connexion */
+    .topPage .bande_horizontale_connexion {
+        width: 80%;
+    }
+
+    .topPage .bande_horizontale_connexion .formulaire form .form-group label {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .copyright h5 {
+        display: block;
+        padding-top: 20px;
+    }
+
+    .copyright img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .sectionPresentationFilm .presentationFilm .titreFilm p {
+        font-size: 4vw;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .themesPage .theme .imgTheme img {
+        width: 500px;
+        height: 350px;
+    }
+
+    .themesPage .theme .bandeauTheme {
+        width: 500px;
+    }
+
+    /* Page de classement */
+    table tr td img {
+        width: 140px;
+        height: 90px;
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,70 @@
+/****************************************** Page de profil ******************************************/
+
+.sectionImageProfil img {
+    border: 1px solid black;
+    box-shadow: 0 0 5px 5px;
+    width: 100%;
+    height: auto;
+}
+
+.sectionImageProfil .pseudoUtilisateur {
+    width: 96.5%;
+    background-color: black;
+    opacity: 0.8;
+    height: 50px;
+}
+
+.sectionImageProfil .pseudoUtilisateur p {
+    color: white;
+    text-align: center;
+    margin-top: 9px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.sectionDescription {
+    padding: 30px;
+    border: 2px solid black;
+}
+
+.sectionDescription h2 {
+    font-weight: 700;
+}
+
+.sectionDescription .description .paragrapheDescription {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 280px;
+}
+
+.sectionDescription .description .paragrapheDescription p {
+    text-align: justify;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.sectionDescription .niveau p {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sectionDescription .boutonEdition {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+.sectionTops {
+    border: 2px solid black;
+    padding: 0 20px 20px 20px;
+}
+
+.sectionTops .titreTop h2 {
+    font-weight: bold;
+}
+
+.sectionTops .top {
+    border: 1px solid black;
+    padding: 5px;
+    width: 100%;
+}

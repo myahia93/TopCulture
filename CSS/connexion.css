@@ -1,0 +1,46 @@
+/* Page de connexion */
+
+.topPage .bande_horizontale_connexion {
+    padding: 0px;
+    margin: 0px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: rgb(68, 66, 145);
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .form-group {
+    width: 70%;
+    font-size: 20px;
+    color: white;
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .form-group input {
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .boutonConForm button {
+    border-radius: 30px;
+    color: white;
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .boutonConForm button:hover {
+    background-color: #85C1E9;
+    color: #F2F3F4;
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .form-inscription {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .form-inscription a {
+    color: white;
+    text-decoration: none;
+    width: 100px;
+}
+
+.topPage .bande_horizontale_connexion .formulaire form .form-inscription a:hover {
+    text-decoration: underline;
+}
