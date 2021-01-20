@@ -47,7 +47,6 @@ class ModeleOeuvre extends ConnexionBD
                 //création de l'avis sur l'oeuvre
                 $idAvis = self::$bdd->lastInsertId();
                 $date = date('Y-m-d');
-                $pseudo = $_SESSION['nom_utilisateur'];
 
 
                 try {

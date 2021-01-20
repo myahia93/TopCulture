@@ -43,8 +43,21 @@ class ModTop
                 $this->contTop->redirectionMonTop();
                 break;
             case "top_commu":
-                $this->contTop->topCommu();
+                $this->contTop->topCommu(null, null);
                 break;
+            case "creation_avis":
+                $this->contTop->creationAvis();
+                break;
+            case "suppr_avis":
+                $this->contTop->supprimeAvis();
+                break;
+            case "form_modif_avis":
+                $this->contTop->formModifAvis();
+            case "modif_avis":
+                $this->contTop->modifAvis();
+                break;
+            case "signal_avis":
+                $this->contTop->signalAvis();
         }
     }
 

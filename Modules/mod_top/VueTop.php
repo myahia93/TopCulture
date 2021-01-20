@@ -163,11 +163,14 @@ class VueTop
     }
 
     //fonction affichage d'un top d'un autre utilisateur
-    public function vueAfficheTop($tab)
+    public function vueAfficheTop($tab, $iduser, $idtop, $avis, $admin)
     {
         ?>
         <!-- TEST AFICHE TOP UTILISATEUR -->
         <div class="container">
+            <div class="titrePage mt-3 mb-4">
+                <h1 class="text-center"><?php ?>... Par ...<?php ?></h1>
+            </div>
             <div class="sectionClassement">
                 <!--                <div class="boutonsPageTop mb-3">-->
                 <!--                    <button type="button" class="btn btn-outline-success">Enregistrer</button>-->
@@ -198,9 +201,119 @@ class VueTop
                     </table>
                 </div>
             </div>
+
+
+            <!-- Section commentaires -->
+
+            <div class="sectionCommentaires">
+                <h2 class="my-3">Commentaires :</h2>
+
+                <?php
+                foreach ($avis as $key => $value) {
+                    ?>
+                    <div class="commentaire">
+                        <div class="comUtilisateur">
+                            <p><?php echo $value['critique'] ?></p>
+                        </div>
+                        <div class="infoUtilisateur">
+                            <h5 style="display: inline-block;">Par </h5>
+                            <p style="display: inline-block;"
+                               id="nomPrenomUtili"><?php echo $value['pseudo'] ?></p>
+                            <h5 style="display: inline-block;"> le </h5>
+                            <p style="display: inline-block;" id="date"><?php echo $value['dateEnvoi'] ?></p>
+                        </div>
+                        <div class="boutonSignalement" style="text-align : right;">
+                            <?php if (isset($_SESSION['nom_utilisateur']) && $_SESSION['nom_utilisateur'] == $value['pseudo']) { ?>
+                                <form class="d-inline-block" action="index.php?module=top&action=form_modif_avis"
+                                      method="POST">
+                                    <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
+                                    <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                                    <button type="submit" class="btn btn-success btn-lg ">Modifier</button>
+                                </form>
+                                <form class="d-inline-block" action="index.php?module=top&action=suppr_avis"
+                                      method="POST">
+                                    <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
+                                    <input type="hidden" name="idTop" value="<?php echo $idtop; ?>">
+                                    <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                                    <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
+                                </form>
+                            <?php } else if ($admin == 1) { ?>
+                                <form class="d-inline-block" action="index.php?module=top&action=suppr_avis"
+                                      method="POST">
+                                    <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
+                                    <input type="hidden" name="idTop" value="<?php echo $idtop; ?>">
+                                    <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                                    <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
+                                </form>
+                            <? } else { ?>
+                                <form action="index.php?module=top&action=signal_avis" method="POST">
+                                    <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
+                                    <input type="hidden" name="pseudo" value="<?php echo $value['pseudo'] ?>">
+                                    <input type="hidden" name="dateEnvoi" value="<?php echo $value['dateEnvoi'] ?>">
+                                    <input type="hidden" name="idTop" value="<?php echo $idtop; ?>">
+                                    <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                                    <button type="submit" class="btn btn-warning btn-lg  ">Signaler</button>
+                                </form>
+                            <? } ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+
+            <!-- Section formulaire -->
+
+            <div class="sectionFormulaire">
+                <h2 class="my-3">Écrivez un commentaire :</h2>
+
+                <div class="container">
+                    <button type="button" class="btn btn-success btn-lg mb-5" data-toggle="collapse"
+                            data-target="#demo">Envoyer un commentaire
+                    </button>
+                    <div id="demo" class="collapse">
+                        <div class="formuaire mb-4">
+                            <form action="index.php?module=top&action=creation_avis" method="POST">
+                                <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                                <input type="hidden" value="<?php echo $idtop; ?>" name="idTop">
+                                <div class="espaceCom mb-2">
+                                    <label for="commentaire">Votre Avis :</label>
+                                    <textarea name="avis" id="" rows="8" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
         <?php
 
+    }
+
+    public function vueFormModifAVis($result, $iduser)
+    {
+        ?>
+        <div class="container">
+            <div class="sectionFormulaire">
+                <h2 class="my-3">Modifiez votre avis :</h2>
+                <div class="formuaire mb-4">
+                    <form action="index.php?module=top&action=modif_avis" method="POST">
+                        <input type="hidden" value="<?php echo $result['idTop']; ?>" name="idTop">
+                        <input type="hidden" value="<?php echo $result['idAvis']; ?>" name="idAvis">
+                        <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                        <div class="espaceCom mb-2">
+                            <label for="commentaire">Votre Avis :</label>
+                            <textarea name="avis" id="" rows="8" required><?php echo $result['critique']; ?></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 
     //FONCTION ALERT

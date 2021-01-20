@@ -155,4 +155,155 @@ class ModeleTop extends ConnexionBD
         } catch (PDOException $e) {
         }
     }
+
+    //vérifie si l'utilisateur est un admin ou non
+    public function modeleEstAdmin()
+    {
+        if (isset($_SESSION['nom_utilisateur'])) {
+            try {
+                $reqVerifAdmin = self::$bdd->prepare("SELECT * FROM utilisateur WHERE pseudo = ? AND admin = 1");
+                $reqVerifAdmin->execute([$_SESSION['nom_utilisateur']]);
+                $result = $reqVerifAdmin->fetch();
+
+                if (empty($result)) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            } catch (PDOException $e) {
+            }
+        } else {
+            return 0;
+        }
+    }
+
+
+    //fonction avis
+    public function modeleCreationAvis($idtop, $avis)
+    {
+        try {
+            //on recupere l'id de l'utilisateur
+            $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
+            $selectID->execute([$_SESSION['nom_utilisateur']]);
+            $recupId = $selectID->fetch();
+            $iduser = $recupId["idUtilisateur"];
+            //On verife si l'utilisateur n'a pas deja donné son avis sur ce top
+            $requeteVerif = self::$bdd->prepare("SELECT idAvis FROM avistop WHERE idUtilisateur = ? AND idTop = ?");
+            $requeteVerif->execute([$iduser, $idtop]);
+            $resultVerif = $requeteVerif->fetchAll();
+
+            if (empty($resultVerif)) {
+
+
+                //création de l'avis général
+                $requeteCreationAvis = self::$bdd->prepare("INSERT INTO avis(idUtilisateur) VALUES(?);");
+                $requeteCreationAvis->execute([$iduser]);
+
+                //création de l'avis sur l'oeuvre
+                $idAvis = self::$bdd->lastInsertId();
+                $date = date('Y-m-d');
+
+
+                try {
+                    $requeteCreationAvisTop = self::$bdd->prepare("INSERT INTO avistop VALUES(?,?,?,?,?)");
+                    $requeteCreationAvisTop->execute([$idAvis, $avis, $date, $idtop, $iduser]);
+                    return $idtop;
+
+                } catch (PDOException $e) {
+                    echo "Echec de l'envoi de votre avis";
+                }
+            } else {
+                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà donner votre avis</div></div>';
+                return $idtop;
+            }
+        } catch (PDOException $e) {
+        }
+    }
+
+    //fourni les élement permettant d'afficher les avis de l'oeuvre
+    public function modeleAfficheAvis($idTop)
+    {
+        try {
+            $idtop = $idTop;
+            $requeteAvis = self::$bdd->prepare("SELECT idAvis, critique, dateEnvoi,  idTop, idUtilisateur, pseudo FROM avistop NATURAL JOIN utilisateur WHERE idTop = ? ORDER BY dateEnvoi DESC;");
+            $requeteAvis->execute([$idtop]);
+            $result = $requeteAvis->fetchAll();
+
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
+    //suppression
+    //FONCTION POUR LA SUPPRESSION D'UN AVIS
+    public function modeleSupprAvis($idAvis, $idtop)
+    {
+        try {
+            $reqSupprAvisOeuvre = self::$bdd->prepare("DELETE FROM avisTop WHERE idAvis = ?");
+            $reqSupprAvisOeuvre->execute([$idAvis]);
+
+            $reqSupprAvis = self::$bdd->prepare("DELETE FROM avis WHERE idAvis = ?");
+            $reqSupprAvis->execute([$idAvis]);
+
+            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Cet avis a bien été supprimé</div></div>';
+        } catch (PDOException $e) {
+        }
+    }
+
+    //modification
+    // permet de recupérer les élements d'un avis
+    public function modeleElementAvis($avis)
+    {
+        try {
+            $req = self::$bdd->prepare("SELECT * FROM avistop WHERE idAvis = ?");
+            $req->execute([$avis]);
+            $result = $req->fetch();
+
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
+    //permet l'update de l'avis
+    public function modeleModifAvis($idAvis, $avis)
+    {
+        try {
+            $date = date('Y-m-d');
+            $reqModifAvis = self::$bdd->prepare("UPDATE avistop SET critique = ?, dateEnvoi = ? WHERE idAvis = ?;");
+            $reqModifAvis->execute([$avis, $date, $idAvis]);
+            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Vous avis a bien été modifer</div></div>';
+        } catch (PDOException $e) {
+        }
+    }
+
+
+    //signalement
+    public function modeleSignalerAvis($idAvis, $pseudo, $dateEnvoi, $idtop)
+    {
+        try {
+            //on recupere l'id de l'utilisateur
+            $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
+            $selectID->execute([$_SESSION['nom_utilisateur']]);
+            $recupId = $selectID->fetch();
+            $iduser = $recupId["idUtilisateur"];
+            $date = date('Y-m-d');
+
+            $message = "Signalement de l'avis $idAvis écrit par $pseudo datant du $dateEnvoi sur le top numero $idtop.";
+            $type = 'signalAvisTop';
+
+            //verification que l'utilsateur n'a pas déja signalez cette avis
+            $reqVerif = self::$bdd->prepare("SELECT * FROM signalement WHERE message = ? AND idUtilisateur = ?;");
+            $reqVerif->execute([$message, $iduser]);
+            $result = $reqVerif->fetch();
+
+            if (empty($result)) {
+                $requeteSignal = self::$bdd->prepare("INSERT INTO signalement(typeSignalement, message, idUtilisateur, dateSignal, idUtilSignal, idTop) VALUES(?,?,?,?,?,?);");
+                $requeteSignal->execute([$type, $message, $iduser, $date, $iduser, $idtop]);
+                echo '<div class="container"><div class="alert alert-success text-center" role="alert">Le message a été signaler</div></div>';
+            } else {
+                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà signaler ce message</div></div>';
+            }
+        } catch (PDOException $e) {
+        }
+    }
 }
