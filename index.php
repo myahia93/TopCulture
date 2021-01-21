@@ -181,7 +181,8 @@ if ($module == "acceuil") {
                             </div>
                         </div>
                         <div class="carousel-item imageSlider">
-                            <img src="Ressources/imgSliderPpl/footballeurs.png" class="d-block w-100" alt="Footballeurs">
+                            <img src="Ressources/imgSliderPpl/footballeurs.png" class="d-block w-100"
+                                 alt="Footballeurs">
                             <div class="titreSliderPPL position-absolute top-50 start-50 translate-middle">
                                 <div class="titreSliderPPL_1">
                                     <p class="text-center mb-1 test">Bienvenue sur Top Culture</p>
@@ -222,11 +223,13 @@ if ($module == "acceuil") {
                                 <h5 class="text-center">Séries</h5>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                           data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                           data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </a>
@@ -240,19 +243,27 @@ if ($module == "acceuil") {
 
     <div class="sectionSlider_2">
         <div class="container">
-                <div class="lienPageAcceuil text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg"><a style="text-decoration: none;" href="index.php?module=top&form_creationTop">Créer ton propre Top</a></button></div>
-            <h5 class="text-center mb-4">Dans cette section, tu pourras élaborer tes propres top avec un large choix de thèmes différents</h5>
+            <div class="lienPageAcceuil text-center mt-4 mb-2">
+                <button type="submit" class="btn btn-dark btn-lg"><a style="text-decoration: none;"
+                                                                     href="index.php?module=top&action=form_creationTopSimple">Créer
+                        ton propre Top</a></button>
+            </div>
+            <h5 class="text-center mb-4">Dans cette section, tu pourras élaborer tes propres top avec un large choix de
+                thèmes différents</h5>
             <div class="slider_2  mx-auto">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="Ressources/Page_D_Acceuil/top.png" class="d-block w-100" alt="Slider meilleurs Mangas">
+                            <img src="Ressources/Page_D_Acceuil/top.png" class="d-block w-100"
+                                 alt="Slider meilleurs Mangas">
                         </div>
                         <div class="carousel-item">
-                            <img src="Ressources/Page_D_Acceuil/marvelfilm.png" class="d-block w-100" alt="Slider Films Marvel">
+                            <img src="Ressources/Page_D_Acceuil/marvelfilm.png" class="d-block w-100"
+                                 alt="Slider Films Marvel">
                         </div>
                         <div class="carousel-item">
-                            <img src="Ressources/Page_D_Acceuil/topjv.png" class="d-block w-100" alt="Slider top Jeux Vidéos">
+                            <img src="Ressources/Page_D_Acceuil/topjv.png" class="d-block w-100"
+                                 alt="Slider top Jeux Vidéos">
                         </div>
                     </div>
                 </div>
@@ -264,13 +275,21 @@ if ($module == "acceuil") {
 
     <div class="top mx-auto mb-5">
         <div class="topPopulaires">
-                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg "><a style="text-decoration: none;" href="index.php?module=theme&action=recherche_mieux_note">Oeuvres les mieux notés</a></button></div>
+            <div class="lienPageAcceuil text-center mt-4 mb-2">
+                <button type="submit" class="btn btn-dark btn-lg "><a style="text-decoration: none;"
+                                                                      href="index.php?module=theme&action=recherche_mieux_note">Oeuvres
+                        les mieux notés</a></button>
+            </div>
             <h5 class="text-center mb-4">Retrouve les oeuvres, qui ont fait l'unanimité</h5>
             <img src="Ressources/Page_D_Acceuil/film2.png" alt="...">
         </div>
         <div class="topRecents">
             <form action="">
-                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg "><a style="text-decoration: none;" href="index.php?module=theme&recherche_mieux_note">Top les plus récents</a></button></div>
+                <div class="lienPageAcceuil text-center mt-4 mb-2">
+                    <button type="submit" class="btn btn-dark btn-lg "><a style="text-decoration: none;"
+                                                                          href="index.php?module=top&action=top_recent">Top
+                            les plus récents</a></button>
+                </div>
             </form>
             <h5 class="text-center mb-4">Ici, sont répertoriés les top les plus recents</h5>
             <img src="Ressources/Page_D_Acceuil/serie2.png" alt="...">

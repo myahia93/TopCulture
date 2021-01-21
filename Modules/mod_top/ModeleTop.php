@@ -172,6 +172,17 @@ class ModeleTop extends ConnexionBD
         }
     }
 
+    //fonction pour les tops de la communauté
+    public function modeleTopCommuSimple()
+    {
+        try {
+            $req = self::$bdd->prepare("SELECT idTop, nomTop, idUtilisateur, idTheme, pseudo, nom FROM utilisateur NATURAL JOIN top NATURAL JOIN theme ORDER BY idTop Limit 20;");
+            $req->execute();
+            return $req;
+        } catch (PDOException $e) {
+        }
+    }
+
     public function modeleTopUtilisateur($idTop, $iduser)
     {
         try {

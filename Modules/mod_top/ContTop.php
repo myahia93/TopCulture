@@ -147,8 +147,6 @@ class ContTop
         }
     }
 
-
-    //signalement
     //Signalement
     public function signalAvis()
     {
@@ -166,5 +164,17 @@ class ContTop
                 $this->topCommu($idtop, $iduser);
             }
         }
+    }
+
+
+    //Affichage Page D'acceuil
+    public function creationTopSimple() {
+        $tab = $this->modeleTop->modeleListeTheme();
+        $this->vueTop->vueCreationTopSimple($tab);
+    }
+
+    public function topCommuSimple() {
+        $topCommu = $this->modeleTop->modeleTopCommuSimple();
+        $this->vueTop->vueTopCommuSimple($topCommu);
     }
 }
