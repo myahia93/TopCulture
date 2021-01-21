@@ -78,6 +78,23 @@ class VueProfil
                             <p><?php echo $value['nom']; ?></p>
                         </div>
                     </div>
+                    <div class="top mb-3">
+                        <div class="col-4 d-inline-block text-center ">
+                            <h4 style="color: rgb(153, 40, 40); font-weight: bold;"> Titre : </h4>
+                            <form action="" method="post">
+                                <button type="submit" class="btn btn-success btn-lg">The best</button>
+                            </form>
+                        </div>
+                        <div class="col-4 d-inline-block text-center">
+                            <h4 style="color: rgb(153, 40, 40); font-weight: bold;">Thème : </h4>
+                            <form action="" method="post">
+                                <button type="submit" class="btn btn-success btn-lg">FILM</button>
+                            </form>
+                        </div>
+                        <div class="col-3 d-inline-block text-center ">
+                            <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
+                        </div>
+                    </div>
                 <?php } ?>
             </div>
 
