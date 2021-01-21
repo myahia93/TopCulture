@@ -68,9 +68,9 @@ class VueProfil
                             <!--                            <p>Nulla mollis commodo auctor.</p>-->
                             <form class="d-inline-block" action="index.php?module=top&action=mon_top"
                                   method="POST">
-                                <input type="hidden" name="nomTop" value="<?php echo $value['nomTop'] ?>">
+                                <input type="hidden" name="nomTop" value="<?php echo $value['nomTop']; ?>">
                                 <button type="submit"
-                                        class="btn btn-info btn-lg "><?php echo $value['nomTop'] ?></button>
+                                        class="btn btn-info btn-lg "><?php echo $value['nomTop']; ?></button>
                             </form>
                         </div>
                         <div class="themeTop">

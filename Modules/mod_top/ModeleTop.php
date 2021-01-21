@@ -94,6 +94,17 @@ class ModeleTop extends ConnexionBD
         }
     }
 
+    public function modeleInfoTop($idtop)
+    {
+        try {
+            $selectTop = self::$bdd->prepare("SELECT nomTop, idUtilisateur, idTheme, pseudo FROM top NATURAL JOIN utilisateur WHERE idTop = ?;");
+            $selectTop->execute([$idtop]);
+            $result = $selectTop->fetch();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
     public function modeleMonTop($idtop)
     {
         try {

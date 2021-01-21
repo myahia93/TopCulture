@@ -57,8 +57,6 @@ class VueTop
                                 <input type="hidden" name="idUtilisateur"
                                        value="<?php echo $value['idUtilisateur']; ?>">
                                 <input type="hidden" name="idTop" value="<?php echo $value['idTop']; ?>">
-                                <input type="hidden" name="idUtilisateur"
-                                       value="<?php echo $value['idUtilisateur']; ?>">
                                 <button type="submit"
                                         class="btn btn-success btn-lg"><?php echo $value['nomTop']; ?></button>
                                 <!--A REVOIR-->
@@ -100,8 +98,8 @@ class VueTop
                         <thead class="table-dark">
                         <tr>
                             <th data-type="number">Classement</th>
-                            <th>Vignette</th>
-                            <th>Libellé</th>
+                            <th>Affiche</th>
+                            <th>Nom</th>
                             <th>Supprimer</th>
                         </tr>
                         </thead>
@@ -112,7 +110,7 @@ class VueTop
                                 <td><img src="<?php echo $value['image']; ?>" alt="Image Vignette"></td>
                                 <td>
                                     <button type="button" type="submit" value="Submit"
-                                            class="btn btn-primary"><?php echo $value['libelle']; ?>
+                                            class="btn btn-dark"><?php echo $value['libelle']; ?>
                                     </button>
                                 </td>
                                 <td>
@@ -163,26 +161,33 @@ class VueTop
     }
 
     //fonction affichage d'un top d'un autre utilisateur
-    public function vueAfficheTop($tab, $iduser, $idtop, $avis, $admin)
+    public function vueAfficheTop($tab, $iduser, $idtop, $avis, $admin, $infotop)
     {
         ?>
         <!-- TEST AFICHE TOP UTILISATEUR -->
         <div class="container">
             <div class="titrePage mt-3 mb-4">
-                <h1 class="text-center"><?php ?>... Par ...<?php ?></h1>
+                <h1 class="text-center" style="text-transform: uppercase"><?php echo $infotop['nomTop']; ?></h1>
+                <h2 class="text-center">Par <?php echo $infotop['pseudo']; ?></h2>
             </div>
             <div class="sectionClassement">
-                <!--                <div class="boutonsPageTop mb-3">-->
-                <!--                    <button type="button" class="btn btn-outline-success">Enregistrer</button>-->
-                <!--                    <button type="button" class="btn btn-outline-danger">Supprimer</button>-->
-                <!--                </div>-->
+                <?php if (isset($_SESSION['nom_utilisateur']) && $_SESSION['nom_utilisateur'] == $infotop['pseudo']) { ?>
+                    <div class="boutonsPageTop mb-3">
+                        <form class="d-inline-block" action="index.php?module=top&action=mon_top"
+                              method="POST">
+                            <input type="hidden" name="nomTop" value="<?php echo $infotop['nomTop']; ?>">
+                            <button type="submit" class="btn btn-outline-success">Modifier</button>
+                        </form>
+                        <!--                                    <button type="button" class="btn btn-outline-danger">Supprimer</button>-->
+                    </div>
+                <?php } ?>
                 <div class="tableClassement">
                     <table class="table table-bordered">
                         <thead class="table-dark">
                         <tr>
                             <th data-type="number">Classement</th>
-                            <th>Vignette</th>
-                            <th>Libellé</th>
+                            <th>Affiche</th>
+                            <th>Nom</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -192,7 +197,7 @@ class VueTop
                                 <td><img src="<?php echo $value['image']; ?>" alt="Image Vignette"></td>
                                 <td>
                                     <button type="button" type="submit" value="Submit"
-                                            class="btn btn-primary"><?php echo $value['libelle']; ?>
+                                            class="btn btn-dark"><?php echo $value['libelle']; ?>
                                     </button>
                                 </td>
                             </tr>
@@ -261,33 +266,34 @@ class VueTop
                 }
                 ?>
             </div>
+            <?php if (isset($_SESSION['nom_utilisateur']) && $_SESSION['nom_utilisateur'] != $infotop['pseudo']) { ?>
+                <!-- Section formulaire -->
 
-            <!-- Section formulaire -->
+                <div class="sectionFormulaire">
+                    <h2 class="my-3">Écrivez un commentaire :</h2>
 
-            <div class="sectionFormulaire">
-                <h2 class="my-3">Écrivez un commentaire :</h2>
+                    <div class="container">
+                        <button type="button" class="btn btn-success btn-lg mb-5" data-toggle="collapse"
+                                data-target="#demo">Envoyer un commentaire
+                        </button>
+                        <div id="demo" class="collapse">
+                            <div class="formuaire mb-4">
+                                <form action="index.php?module=top&action=creation_avis" method="POST">
+                                    <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
+                                    <input type="hidden" value="<?php echo $idtop; ?>" name="idTop">
+                                    <div class="espaceCom mb-2">
+                                        <label for="commentaire">Votre Avis :</label>
+                                        <textarea name="avis" id="" rows="8" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                                </form>
+                            </div>
 
-                <div class="container">
-                    <button type="button" class="btn btn-success btn-lg mb-5" data-toggle="collapse"
-                            data-target="#demo">Envoyer un commentaire
-                    </button>
-                    <div id="demo" class="collapse">
-                        <div class="formuaire mb-4">
-                            <form action="index.php?module=top&action=creation_avis" method="POST">
-                                <input type="hidden" value="<?php echo $iduser; ?>" name="idUtilisateur">
-                                <input type="hidden" value="<?php echo $idtop; ?>" name="idTop">
-                                <div class="espaceCom mb-2">
-                                    <label for="commentaire">Votre Avis :</label>
-                                    <textarea name="avis" id="" rows="8" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
-                            </form>
                         </div>
-
                     </div>
-                </div>
 
-            </div>
+                </div>
+            <?php } ?>
         </div>
         <?php
 

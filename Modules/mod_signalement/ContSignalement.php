@@ -25,7 +25,8 @@ class ContSignalement
         if ($admin == 1) {
             $message = $this->modeleSignalement->modeleRecupMessage();
             $signal = $this->modeleSignalement->modeleRecupSignalAvis();
-            $this->vueSignalement->vueAdmin($message, $signal);
+            $signalTop = $this->modeleSignalement->modeleRecupSignalAvisTop();
+            $this->vueSignalement->vueAdmin($message, $signal, $signalTop);
         } else {
             $this->vueSignalement->vueUtilisateur();
         }

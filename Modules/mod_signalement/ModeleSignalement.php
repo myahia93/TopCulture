@@ -43,6 +43,18 @@ class ModeleSignalement extends ConnexionBD
         }
     }
 
+    public function modeleRecupSignalAvisTop()
+    {
+        try {
+            $type = 'signalAvisTop';
+            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilSignal, idUtilisateur, idTop, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY dateSignal DESC");
+            $req->execute([$type]);
+            $result = $req->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
     public function modeleRecupMessage()
     {
         try {

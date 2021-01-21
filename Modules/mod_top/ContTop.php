@@ -87,13 +87,15 @@ class ContTop
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
             $tab = $this->modeleTop->modeleTopUtilisateur($idtop, $iduser);
             $avis = $this->modeleTop->modeleAfficheAvis($idtop);
+            $infotop = $this->modeleTop->modeleInfoTop($idtop);
             $estAdmin = $this->modeleTop->modeleEstAdmin();
-            $this->vueTop->vueAfficheTop($tab, $iduser, $idtop, $avis, $estAdmin);
+            $this->vueTop->vueAfficheTop($tab, $iduser, $idtop, $avis, $estAdmin,$infotop);
         } else {
             $tab = $this->modeleTop->modeleTopUtilisateur($idtopRecup, $iduserRecup);
             $avis = $this->modeleTop->modeleAfficheAvis($idtopRecup);
             $estAdmin = $this->modeleTop->modeleEstAdmin();
-            $this->vueTop->vueAfficheTop($tab, $iduserRecup, $idtopRecup, $avis, $estAdmin);
+            $infotop = $this->modeleTop->modeleInfoTop($idtopRecup);
+            $this->vueTop->vueAfficheTop($tab, $iduserRecup, $idtopRecup, $avis, $estAdmin, $infotop);
         }
     }
 

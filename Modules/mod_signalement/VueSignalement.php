@@ -38,7 +38,7 @@ class VueSignalement
 
     }
 
-    public function vueAdmin($message, $signal)
+    public function vueAdmin($message, $signal, $signalTop)
     {
         ?>
         <!-- PAGE SIGNALEMENT ADMIN-->
@@ -62,7 +62,13 @@ class VueSignalement
                                     type="button" data-toggle="collapse"
                                     data-target="#collapseExample2" aria-expanded="false"
                                     aria-controls="collapseExample">
-                                Signalment des avis
+                                Signalment des avis des oeuvres
+                            </button>
+                            <button class="btn btn-<?php if (!empty($signalTop)) { ?>danger<?php } else { ?>success<?php } ?> text-center"
+                                    type="button" data-toggle="collapse"
+                                    data-target="#collapseExample3" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                Signalment des avis des tops
                             </button>
                         </p>
                     </div>
@@ -118,9 +124,48 @@ class VueSignalement
                                                    value="<?php echo $value['idSignalement'] ?>">
                                             <button type="submit" class="btn btn-danger btn-lg ">Archiver</button>
                                         </form>
-                                        <form class="d-inline-block" action="index.php?module=oeuvre&action=affichage_oeuvre" method="POST">
-                                            <input type="hidden" name="idOeuvre" value="<?php echo $value['idOeuvre'] ?>">
-                                            <button type="submit" class="btn btn-success btn-lg ">Accéder à la page</button>
+                                        <form class="d-inline-block"
+                                              action="index.php?module=oeuvre&action=affichage_oeuvre" method="POST">
+                                            <input type="hidden" name="idOeuvre"
+                                                   value="<?php echo $value['idOeuvre'] ?>">
+                                            <button type="submit" class="btn btn-success btn-lg ">Accéder à la page
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="collapse" id="collapseExample3">
+                        <div class="sectionCommentaires">
+                            <h2 class="my-3">Signalements des avis :</h2>
+                            <?php foreach ($signalTop as $key => $value) { ?>
+                                <div class="commentaire">
+                                    <div class="comUtilisateur">
+                                        <p><?php echo $value['message']; ?></p>
+                                    </div>
+                                    <div class="infoUtilisateur">
+                                        <h5 style="display: inline-block;">Par </h5>
+                                        <p style="display: inline-block;"
+                                           id="nomPrenomUtili"><?php echo $value['pseudo']; ?></p>
+                                        <h5 style="display: inline-block;"> le </h5>
+                                        <p style="display: inline-block;"
+                                           id="date"><?php echo $value['dateSignal']; ?></p>
+                                    </div>
+                                    <div class="boutonArchive" style="text-align : right;">
+                                        <form class="d-inline-block"
+                                              action="index.php?module=signalement&action=suppr_signal" method="POST">
+                                            <input type="hidden" name="idSignal"
+                                                   value="<?php echo $value['idSignalement'] ?>">
+                                            <button type="submit" class="btn btn-danger btn-lg ">Archiver</button>
+                                        </form>
+                                        <form class="d-inline-block" action="index.php?module=top&action=top_commu"
+                                              method="POST">
+                                            <input type="hidden" name="idUtilisateur"
+                                                   value="<?php echo $value['idUtilSignal']; ?>">
+                                            <input type="hidden" name="idTop" value="<?php echo $value['idTop']; ?>">
+                                            <button type="submit" class="btn btn-success btn-lg ">Accéder à la page
+                                            </button>
                                         </form>
                                     </div>
                                 </div>
