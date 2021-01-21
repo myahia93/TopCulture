@@ -105,7 +105,7 @@ class VueTheme
         <?php
     }
 
-    public function vueAfficheOeuvre($tab)
+    public function vueAfficheOeuvre($tab, $theme)
     {
         ?>
 
@@ -113,7 +113,7 @@ class VueTheme
 
         <div class="container">
             <div class="titrePage">
-                <h1 class="text-center">Galerie films</h1>
+                <h1 class="text-center"><?php echo $theme; ?></h1>
             </div>
             <div class="galeriePage">
                 <div class="imageGalerie">
@@ -183,6 +183,42 @@ class VueTheme
             </div>
             <?php
         }
+    }
+
+    public function vueAfficheOeuvreMieuxNote($tab)
+    {
+        ?>
+
+        <!-- Galerie films -->
+
+        <div class="container">
+            <div class="titrePage">
+                <h1 class="text-center">Les mieux notées</h1>
+            </div>
+            <div class="galeriePage">
+                <div class="imageGalerie">
+                    <div class="row">
+                        <?php foreach ($tab as $key => $value) { ?>
+                            <div class="col galerie">
+
+                                <form action="index.php?module=oeuvre&action=affichage_oeuvre" method="POST">
+                                    <input type="hidden" name="idOeuvre" value="<?php echo $value['idOeuvre']; ?>">
+                                    <button class="mx-auto d-block" type="submit"><img
+                                                src="<?php echo $value['image']; ?>" alt=""></button>
+                                    <div class="titreImageGalerie">
+                                        <button class="mx-auto mt-3 d-block"
+                                                type="submit"><?php echo $value['libelle']; ?></button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+
     }
 }
 

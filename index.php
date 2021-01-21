@@ -264,15 +264,13 @@ if ($module == "acceuil") {
 
     <div class="top mx-auto mb-5">
         <div class="topPopulaires">
-            <form action="">
-                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg ">Oeuvres les mieux notés</button></div>
-            </form>
+                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg "><a style="text-decoration: none;" href="index.php?module=theme&action=recherche_mieux_note">Oeuvres les mieux notés</a></button></div>
             <h5 class="text-center mb-4">Retrouve les oeuvres, qui ont fait l'unanimité</h5>
             <img src="Ressources/Page_D_Acceuil/film2.png" alt="...">
         </div>
         <div class="topRecents">
             <form action="">
-                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg ">Top les plus récents</button></div>
+                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg "><a style="text-decoration: none;" href="index.php?module=theme&recherche_mieux_note">Top les plus récents</a></button></div>
             </form>
             <h5 class="text-center mb-4">Ici, sont répertoriés les top les plus recents</h5>
             <img src="Ressources/Page_D_Acceuil/serie2.png" alt="...">
@@ -350,20 +348,11 @@ if ($module == "acceuil") {
                     <li>
                         <img class="footerImage" src="Ressources/ReseauxSociaux/Youtube_icon-icons.com_66802.png"
                              alt="YouTube">
-                        <a href="https://www.youtube.com/">YouTube</a>
-                    </li>
-                    <li>
-                        <img class="footerImage" src="Ressources/ReseauxSociaux/insta.png" alt="Instagram">
-                        <a href="https://www.instagram.com/">Instagram</a>
+                        <a href="https://www.youtube.com/channel/UCPL11xj-oqceKG3N8lT5HWQ">YouTube</a>
                     </li>
                     <li>
                         <img class="footerImage" src="Ressources/ReseauxSociaux/twitter.jpg" alt="Twitter">
-                        <a href="https://twitter.com/home">Twitter</a>
-                    </li>
-                    <li>
-                        <img class="footerImage" src="Ressources/ReseauxSociaux/Facebook_icon-icons.com_66805.png"
-                             alt="Facebook">
-                        <a href="https://fr-fr.facebook.com/">Facebook</a>
+                        <a href="https://twitter.com/culture_top">Twitter</a>
                     </li>
                 </ul>
             </div>

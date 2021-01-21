@@ -34,6 +34,10 @@ class ModTheme
                 break;
             case "recherche_oeuvre":
                 $this->contTheme->afficheRechercheOeuvre();
+                break;
+            case "recherche_mieux_note":
+                $this->contTheme->afficheRechercheLesMieuxNote();
+                break;
         }
     }
 

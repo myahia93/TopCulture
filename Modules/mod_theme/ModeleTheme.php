@@ -52,5 +52,16 @@ class ModeleTheme extends ConnexionBD
         }
     }
 
+    public function modeleListeMieuxNote()
+    {
+        try {
+            $selectOeuvre = self::$bdd->prepare("SELECT idOeuvre, libelle, image FROM oeuvre ORDER BY note DESC Limit 20");
+            $selectOeuvre->execute();
+            $result = $selectOeuvre->fetchAll();
+            return $result;
+        } catch (PDOException $e) {
+        }
+    }
+
 
 }

@@ -29,7 +29,7 @@ class ContTheme
         if (isset($_POST['nomTheme'])) {
             $theme = addslashes(strip_tags($_POST['nomTheme']));
             $tabOeuvre = $this->modeleTheme->modeleSelectionTheme($theme);
-            $this->vueTheme->vueAfficheOeuvre($tabOeuvre);
+            $this->vueTheme->vueAfficheOeuvre($tabOeuvre, $theme);
         }
     }
 
@@ -40,6 +40,12 @@ class ContTheme
             $tab = $this->modeleTheme->modeleListeRecherche($recherche);
             $this->vueTheme->vueAfficheListeRecherche($tab, $recherche);
         }
+    }
+
+    public function afficheRechercheLesMieuxNote()
+    {
+        $tab = $this->modeleTheme->modeleListeMieuxNote();
+        $this->vueTheme->vueAfficheOeuvreMieuxNote($tab);
     }
 
 
