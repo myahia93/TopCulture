@@ -10,7 +10,7 @@ body {
     background-position: center;
     background-size: cover;
     height: 100%;
-    margin-top: 160px;
+    margin-top: 144px;
 }
 
 /* Navigation */
@@ -101,14 +101,28 @@ nav {
     margin-top: 200px;
 }*/
 
-.slider {
-    max-width: 800px;
-}
+/* Section Sliders (1 et 2) */
 
 .imageSlider {
     position: relative;
 }
-
+.imageSlider img {
+    width: 100vw;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    opacity: 0.9;
+}
+.imageSlider .titreSliderPPL .titreSliderPPL_1 p  {
+    font-size: 90px;
+    color: white;
+    font-weight: bold;
+}
+.imageSlider .titreSliderPPL .titreSliderPPL_2 p  {
+    font-size: 40px;
+    color: white;
+}
 .titreSlider {
     position: absolute;
     height: 40px;
@@ -117,16 +131,15 @@ nav {
     width: 100%;
     bottom: 0;
 }
-
 .titreSlider h5 {
-    position: absolute;
-    right: 45%;
     color: white;
     font-weight: 600;
 }
-
 .slider_2 {
     max-width: 1000px;
+}
+.lienPageAcceuil button a:hover {
+    color: white;
 }
 
 /* Section Top */
@@ -310,6 +323,18 @@ footer ul li p {
 
     .sectionPresentationFilm .presentationFilm .titreFilm p {
         font-size: 4vw;
+    }
+
+    /* Page d'accueil */
+
+    .imageSlider .titreSliderPPL .titreSliderPPL_1 p  {
+        font-size: 70px;
+        color: white;
+        font-weight: bold;
+    }
+    .imageSlider .titreSliderPPL .titreSliderPPL_2 p  {
+        font-size: 30px;
+        color: white;
     }
 }
 

@@ -144,43 +144,92 @@ switch ($module) {
 <?php
 if ($module == "acceuil") {
     ?>
+    <!-- Slider du site (Section 1)-->
+
     <div class="sectionSlider_1">
-        <div class="container">
-            <h1 class="text-center  mt-4 mb-2">Bienvenue sur Top Culture</h1>
-            <h5 class="text-center  mb-4">Plonge toi dans de multiples univers</h5>
+        <div class="container-fluid p-0">
             <div class="slider  mx-auto">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active imageSlider">
-                            <img src="Ressources/Page_D_Acceuil/manga2.png" class="d-block w-100" alt="Mangas">
+                        <div class="carousel-item active imageSlider text-center">
+                            <img src="Ressources/imgSliderPpl/mangas.png" alt="Mangas">
+                            <div class="titreSliderPPL position-absolute top-50 start-50 translate-middle">
+                                <div class="titreSliderPPL_1">
+                                    <p class="text-center mb-1 test">Bienvenue sur Top Culture</p>
+                                </div>
+                                <div class="titreSliderPPL_2">
+                                    <p class="text-center">Plonge toi dans de multiples univers</p>
+                                </div>
+                            </div>
                             <div class="titreSlider">
-                                <h5>Mangas</h5>
+                                <h5 class="text-center">Mangas</h5>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item imageSlider">
+                            <img src="Ressources/imgSliderPpl/jeux.png" class="d-block w-100" alt="Jeux Vidéo">
+                            <div class="titreSliderPPL position-absolute top-50 start-50 translate-middle">
+                                <div class="titreSliderPPL_1">
+                                    <p class="text-center mb-1 test">Bienvenue sur Top Culture</p>
+                                </div>
+                                <div class="titreSliderPPL_2">
+                                    <p class="text-center">Plonge toi dans de multiples univers</p>
+                                </div>
+                            </div>
+                            <div class="titreSlider">
+                                <h5 class="text-center">Jeux Vidéos</h5>
                             </div>
                         </div>
                         <div class="carousel-item imageSlider">
-                            <img src="Ressources/Page_D_Acceuil/jeux.jpg" class="d-block w-100" alt="Jeux Vidéo">
+                            <img src="Ressources/imgSliderPpl/footballeurs.png" class="d-block w-100" alt="Footballeurs">
+                            <div class="titreSliderPPL position-absolute top-50 start-50 translate-middle">
+                                <div class="titreSliderPPL_1">
+                                    <p class="text-center mb-1 test">Bienvenue sur Top Culture</p>
+                                </div>
+                                <div class="titreSliderPPL_2">
+                                    <p class="text-center">Plonge toi dans de multiples univers</p>
+                                </div>
+                            </div>
                             <div class="titreSlider">
-                                <h5>Jeux Vidéos</h5>
+                                <h5 class="text-center">Footballeurs</h5>
                             </div>
                         </div>
                         <div class="carousel-item imageSlider">
-                            <img src="Ressources/Page_D_Acceuil/foot2.png" class="d-block w-100" alt="Footballeurs">
+                            <img src="Ressources/imgSliderPpl/films.png" class="d-block w-100" alt="Films">
+                            <div class="titreSliderPPL position-absolute top-50 start-50 translate-middle">
+                                <div class="titreSliderPPL_1">
+                                    <p class="text-center mb-1 test">Bienvenue sur Top Culture</p>
+                                </div>
+                                <div class="titreSliderPPL_2">
+                                    <p class="text-center">Plonge toi dans de multiples univers</p>
+                                </div>
+                            </div>
                             <div class="titreSlider">
-                                <h5>Footballeurs</h5>
+                                <h5 class="text-center">Films</h5>
                             </div>
                         </div>
                         <div class="carousel-item imageSlider">
-                            <img src="Ressources/Page_D_Acceuil/film2.png" class="d-block w-100" alt="Films">
+                            <img src="Ressources/imgSliderPpl/series.png" class="d-block w-100" alt="Séries">
+                            <div class="titreSliderPPL position-absolute top-50 start-50 translate-middle">
+                                <div class="titreSliderPPL_1">
+                                    <p class="text-center mb-1 test">Bienvenue sur Top Culture</p>
+                                </div>
+                                <div class="titreSliderPPL_2">
+                                    <p class="text-center">Plonge toi dans de multiples univers</p>
+                                </div>
+                            </div>
                             <div class="titreSlider">
-                                <h5>Films</h5>
+                                <h5 class="text-center">Séries</h5>
                             </div>
                         </div>
-                        <div class="carousel-item imageSlider">
-                            <img src="Ressources/Page_D_Acceuil/serie2.png" class="d-block w-100" alt="Séries">
-                            <div class="titreSlider">
-                                <h5>Séries</h5>
-                            </div>
-                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -191,40 +240,21 @@ if ($module == "acceuil") {
 
     <div class="sectionSlider_2">
         <div class="container">
-            <h1 class="text-center mt-4 mb-2">Crée ton propre Top</h1>
-            <h5 class="text-center mb-4">Dans cette section, tu pourras élaborer tes propres top avec un large choix de
-                thèmes différents</h5>
+                <div class="lienPageAcceuil text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg"><a style="text-decoration: none;" href="index.php?module=top&form_creationTop">Créer ton propre Top</a></button></div>
+            <h5 class="text-center mb-4">Dans cette section, tu pourras élaborer tes propres top avec un large choix de thèmes différents</h5>
             <div class="slider_2  mx-auto">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-                    </ol>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="Ressources/Page_D_Acceuil/top.png" class="d-block w-100"
-                                 alt="Slider meilleurs Mangas">
+                            <img src="Ressources/Page_D_Acceuil/top.png" class="d-block w-100" alt="Slider meilleurs Mangas">
                         </div>
                         <div class="carousel-item">
-                            <img src="Ressources/Page_D_Acceuil/marvelfilm.png" class="d-block w-100"
-                                 alt="Slider Films Marvel">
+                            <img src="Ressources/Page_D_Acceuil/marvelfilm.png" class="d-block w-100" alt="Slider Films Marvel">
                         </div>
                         <div class="carousel-item">
-                            <img src="Ressources/Page_D_Acceuil/topjv.png" class="d-block w-100"
-                                 alt="Slider top Jeux Vidéos">
+                            <img src="Ressources/Page_D_Acceuil/topjv.png" class="d-block w-100" alt="Slider top Jeux Vidéos">
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                       data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                       data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -234,12 +264,16 @@ if ($module == "acceuil") {
 
     <div class="top mx-auto mb-5">
         <div class="topPopulaires">
-            <h1 class="text-center mt-4 mb-2">Top les plus populaires</h1>
-            <h5 class="text-center mb-4">Retrouve les top, qui ont fait l'unanimité</h5>
+            <form action="">
+                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg ">Oeuvres les mieux notés</button></div>
+            </form>
+            <h5 class="text-center mb-4">Retrouve les oeuvres, qui ont fait l'unanimité</h5>
             <img src="Ressources/Page_D_Acceuil/film2.png" alt="...">
         </div>
         <div class="topRecents">
-            <h1 class="text-center mt-4 mb-2">Top les plus récents</h1>
+            <form action="">
+                <div class="text-center mt-4 mb-2"> <button type="submit" class="btn btn-dark btn-lg ">Top les plus récents</button></div>
+            </form>
             <h5 class="text-center mb-4">Ici, sont répertoriés les top les plus recents</h5>
             <img src="Ressources/Page_D_Acceuil/serie2.png" alt="...">
         </div>

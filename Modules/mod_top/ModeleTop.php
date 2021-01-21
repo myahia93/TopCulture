@@ -108,7 +108,7 @@ class ModeleTop extends ConnexionBD
     public function modeleMonTop($idtop)
     {
         try {
-            $selectTop = self::$bdd->prepare("SELECT * FROM oeuvre NATURAL JOIN composer WHERE idOeuvre = idOeuvre_composer AND idTop_composer = ?;");
+            $selectTop = self::$bdd->prepare("SELECT * FROM oeuvre NATURAL JOIN composer WHERE idOeuvre = idOeuvre_composer AND idTop_composer = ? ORDER BY position;");
             $selectTop->execute([$idtop]);
             $result = $selectTop->fetchAll();
             return $result;
@@ -119,9 +119,19 @@ class ModeleTop extends ConnexionBD
     //Fonction permmettant d'ajouter une oeuvre de son top
     public function modeleAjouterOeuvre($idOeuvre, $idTop)
     {
+
+        $reqPosition = self::$bdd->prepare("SELECT count(*) FROM composer WHERE idTop_composer = ?");
+        $reqPosition->execute([$idTop]);
+        $result = $reqPosition->fetch();
+
+        if (!empty($result)) {
+            $position = $result[0] + 1;
+        } else {
+            $position = 1;
+        }
         try {
-            $requeteAjoutOeuvre = self::$bdd->prepare("INSERT INTO composer VALUES(?,?)");
-            $requeteAjoutOeuvre->execute([$idTop, $idOeuvre]);
+            $requeteAjoutOeuvre = self::$bdd->prepare("INSERT INTO composer VALUES(?,?,?)");
+            $requeteAjoutOeuvre->execute([$idTop, $idOeuvre, $position]);
             echo '<div class="container"><div class="alert alert-success text-center" role="alert">Ajout réussi</div></div>';
         } catch (PDOException $e) {
         }
@@ -131,6 +141,12 @@ class ModeleTop extends ConnexionBD
     public function modeleSupprOeuvre($idOeuvre, $idTop)
     {
         try {
+            $requetePosition = self::$bdd->prepare("SELECT position FROM composer WHERE idOeuvre_composer = ? AND idTop_composer = ?");
+            $requetePosition->execute([$idOeuvre, $idTop]);
+            $result = $requetePosition->fetch();
+            $position = $result[0];
+            $requeteupdate = self::$bdd->prepare("UPDATE composer SET position = position-1 WHERE idTop_composer = ? AND position > ?");
+            $requeteupdate->execute([$idTop, $position]);
             $requeteSuppr = self::$bdd->prepare("DELETE FROM composer WHERE idOeuvre_composer = ? AND idTop_composer = ?");
             $requeteSuppr->execute([$idOeuvre, $idTop]);
             echo '<div class="container"><div class="alert alert-success text-center" role="alert">Suppression réussi</div></div>';
@@ -159,7 +175,7 @@ class ModeleTop extends ConnexionBD
     public function modeleTopUtilisateur($idTop, $iduser)
     {
         try {
-            $req = self::$bdd->prepare("SELECT idOeuvre, libelle, image, nomTop, idTheme, idUtilisateur, pseudo FROM oeuvre NATURAL JOIN composer NATURAL JOIN top NATURAL JOIN utilisateur WHERE idOeuvre = idOeuvre_composer AND idTop_composer = ? AND idUtilisateur = ?;");
+            $req = self::$bdd->prepare("SELECT idOeuvre, libelle, image, nomTop, idTheme, idUtilisateur, pseudo FROM oeuvre NATURAL JOIN composer NATURAL JOIN top NATURAL JOIN utilisateur WHERE idOeuvre = idOeuvre_composer AND idTop_composer = ? AND idUtilisateur = ? ORDER BY position;");
             $req->execute([$idTop, $iduser]);
             $result = $req->fetchAll();
             return $result;

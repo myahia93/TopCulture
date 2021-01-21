@@ -1,4 +1,7 @@
 /* Page de connexion */
+.topPage {
+    margin-top: 16px;
+}
 
 .topPage .bande_horizontale_connexion {
     padding: 0px;
