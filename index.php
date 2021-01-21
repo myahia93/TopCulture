@@ -49,6 +49,7 @@ switch ($module) {
     case 'theme':
     case 'oeuvre':
     case 'signalement':
+    case 'contact':
     case 'top':
         include_once "Modules/mod_$module/Mod$module.php";
         include_once "ConnexionBD.php";
@@ -86,7 +87,8 @@ switch ($module) {
                            href="index.php?module=theme">THÈMES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT</a>
+                        <a class="nav-link <?php if ($module == "contact") { ?> active <?php } ?>"
+                           href="index.php?module=contact">A PROPOS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($module == "signalement") { ?> active <?php } ?>"

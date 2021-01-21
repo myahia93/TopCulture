@@ -15,27 +15,32 @@ class VueTop
             </div>
             <div class="topPage">
                 <div class="row">
-                    <div class=" bande_horizontale  mx-auto mb-5">
-                        <div class="text-center mt-4 mb-2">
-                            <form action="index.php?module=top&action=creation_top" method="POST">
-                                <div class="top mx-auto mb-5">
-                                    <label><b>Nom du top</b></label>
-                                    <input type="text" size="30" maxlength="50" class="form-control"
-                                           placeholder="Entrer le nom du top"
-                                           name="nom_top" required>
-                                </div>
-                                <div class="top mx-auto mb-5">
-                                    <label><b>Thème</b></label>
-                                    <select name='theme'>
-                                        <?php foreach ($tab as $key => $value) { ?>
-                                            <option value="<?php echo $value['idTheme']; ?>"><?php echo $value['nom']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="top mx-auto mb-5">
-                                    <button type="submit" class="btn btn-danger btn-lg ">Créer le top</button>
-                                </div>
-                            </form>
+                    <button type="button" class="btn btn-success btn-lg mx-auto mb-5" style="width: 150px;"
+                            data-toggle="collapse" data-target="#demo">Créer un Top
+                    </button>
+                    <div id="demo" class="collapse">
+                        <div class=" bande_horizontale  mx-auto mb-5">
+                            <div class="text-center mt-4 mb-2">
+                                <form action="index.php?module=top&action=creation_top" method="POST">
+                                    <div class="top mx-auto mb-5">
+                                        <label><b>Nom du top</b></label>
+                                        <input type="text" size="30" maxlength="50" class="form-control"
+                                               placeholder="Entrer le nom du top"
+                                               name="nom_top" required>
+                                    </div>
+                                    <div class="top mx-auto mb-5">
+                                        <label><b>Thème</b></label>
+                                        <select name='theme'>
+                                            <?php foreach ($tab as $key => $value) { ?>
+                                                <option value="<?php echo $value['idTheme']; ?>"><?php echo $value['nom']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="top mx-auto mb-5">
+                                        <button type="submit" class="btn btn-danger btn-lg ">Créer le top</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

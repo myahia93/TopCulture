@@ -221,6 +221,24 @@ footer ul li p {
     width: 100px;
 }
 
+/*PAGE CSS A PROPOS */
+
+.cadreDescription {
+    border: 1px solid black;
+    background-color: rgb(68, 66, 145);
+    border-radius: 10px;
+    padding-top: 20px;
+    color: white;
+    margin: 0 50px;
+}
+
+#imageid {
+    border-color: aliceblue;
+    border-radius: 10px;
+    width: 50%;
+    height: 50%;
+}
+
 /* Media Queries */
 
 
