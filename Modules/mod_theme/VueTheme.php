@@ -73,32 +73,34 @@ class VueTheme
                             <h2 class="text-center">Animes</h2>
                         </div>
                     </div>
-                    <!--                <div class="col theme position-relative mb-5">-->
-                    <!--                    <div class="imgTheme">-->
-                    <!--                        <img class="mx-auto d-block" src="imgThemes/fond_cuisine.jpg" alt="">-->
-                    <!--                    </div>-->
-                    <!--                    <div class="boutonTheme position-absolute top-50 start-50 translate-middle">-->
-                    <!--                        <form action="" method="post">-->
-                    <!--                            <button type="submit">Voir</button>-->
-                    <!--                        </form>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="bandeauTheme position-absolute bottom-0 start-50 translate-middle-x">-->
-                    <!--                        <h2 class="text-center">Cuisine</h2>-->
-                    <!--                    </div>-->
-                    <!--                </div>-->
-                    <!--                <div class="col theme position-relative mb-5">-->
-                    <!--                    <div class="imgTheme">-->
-                    <!--                        <img class="mx-auto d-block" src="imgThemes/fond_foot.jpg" alt="">-->
-                    <!--                    </div>-->
-                    <!--                    <div class="boutonTheme position-absolute top-50 start-50 translate-middle">-->
-                    <!--                        <form action="" method="post">-->
-                    <!--                            <button type="submit">Voir</button>-->
-                    <!--                        </form>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="bandeauTheme position-absolute bottom-0 start-50 translate-middle-x">-->
-                    <!--                        <h2 class="text-center">Football</h2>-->
-                    <!--                    </div>-->
-                    <!--                </div>-->
+                                    <div class="col theme position-relative mb-5">
+                                        <div class="imgTheme">
+                                            <img class="mx-auto d-block" src="Ressources/imgThemes/fond_cuisine.jpg" alt="">
+                                        </div>
+                                        <div class="boutonTheme position-absolute top-50 start-50 translate-middle">
+                                            <form action="index.php?module=theme&action=theme_selectionné" method="POST">
+                                                <input type="hidden" name="nomTheme" value="<?php echo $tab[4][0]; ?>">
+                                                <button type="submit">Voir</button>
+                                            </form>
+                                        </div>
+                                        <div class="bandeauTheme position-absolute bottom-0 start-50 translate-middle-x">
+                                            <h2 class="text-center">Cuisine</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col theme position-relative mb-5">
+                                        <div class="imgTheme">
+                                            <img class="mx-auto d-block" src="Ressources/imgThemes/fond_foot.jpg" alt="">
+                                        </div>
+                                        <div class="boutonTheme position-absolute top-50 start-50 translate-middle">
+                                            <form action="index.php?module=theme&action=theme_selectionné" method="POST">
+                                                <input type="hidden" name="nomTheme" value="<?php echo $tab[5][0]; ?>">
+                                                <button type="submit">Voir</button>
+                                            </form>
+                                        </div>
+                                        <div class="bandeauTheme position-absolute bottom-0 start-50 translate-middle-x">
+                                            <h2 class="text-center">Football</h2>
+                                        </div>
+                                    </div>
                 </div>
             </div>
         </div>

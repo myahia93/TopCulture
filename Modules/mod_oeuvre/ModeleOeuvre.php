@@ -205,4 +205,9 @@ class ModeleOeuvre extends ConnexionBD
         } catch (PDOException $e) {
         }
     }
+
+    public function modeleTestAjax()
+    {
+        echo 'ok';
+    }
 }

@@ -45,7 +45,7 @@ class ContOeuvre
 
                 $this->affichagePageOeuvre($oeuvre);
             } else {
-                echo '<div class="alert alert-info" role="alert">Connectez-vous pour pouvoir donner votre avis !</div>';
+                echo '<div class="container"><div class="alert alert-warning" role="alert">Connectez-vous pour pouvoir donner votre avis !</div></div>';
                 $this->affichagePageOeuvre($oeuvre);
             }
         }
@@ -103,5 +103,11 @@ class ContOeuvre
                 $this->affichagePageOeuvre($oeuvre);
             }
         }
+    }
+
+    //AJAX
+    public function testAjax()
+    {
+        $this->modeleOeuvre->modeleTestAjax();
     }
 }

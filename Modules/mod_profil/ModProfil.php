@@ -29,6 +29,12 @@ class ModProfil
             case "affichage_profil":
                 $this->contProfil->affichageProfil();
                 break;
+            case "form_edition_profil":
+                $this->contProfil->formEditionProfil();
+                break;
+            case "maj_profil":
+                $this->contProfil->majProfil();
+                break;
         }
     }
 }

@@ -22,11 +22,17 @@ class ContProfil
     {
         $tab = $this->modeleProfil->modeleProfilUtilisateurs();
         $top = $this->modeleProfil->modeleListeTop();
-        $this->vueProfil->vueAffichageProfil($tab,$top);
+        $this->vueProfil->vueAffichageProfil($tab, $top);
     }
 
-    public function affichageTop()
+    public function formEditionProfil()
     {
-        $this->modeleProfil->modeleListeTop();
+//        $this->modeleProfil->modeleListeTop();
+    }
+
+    public function majProfil()
+    {
+//        $this->modeleProfil
+        $this->affichageProfil();
     }
 }

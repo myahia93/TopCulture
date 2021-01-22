@@ -352,13 +352,31 @@ class ModeleTop extends ConnexionBD
     //supprime top
     public function modeleSupprTop($idtop)
     {
-        try {
-            $reqVideTop = self::$bdd->prepare("DELETE FROM composer WHERE idTop_composer = ?");
-            $reqVideTop->execute([$idtop]);
-            $reqSupprTop = self::$bdd->prepare("DELETE FROM top WHERE idTop = ?");
-            $reqSupprTop->execute([$idtop]);
-            header('Location: index.php?module=profil&action=affichage_profil');
-        } catch (PDOException $e) {
-        }
+        $req1 = self::$bdd->prepare("DELETE FROM signalement WHERE idTop = ?");
+        $req1->execute([$idtop]);
+        $req2 = self::$bdd->prepare("DELETE FROM avistop WHERE idTop = ?");
+        $req2->execute([$idtop]);
+        $req3 = self::$bdd->prepare("DELETE FROM composer WHERE idTop_composer = ?");
+        $req3->execute([$idtop]);
+        $reqSupprTop = self::$bdd->prepare("DELETE FROM top WHERE idTop = ?");
+        $reqSupprTop->execute([$idtop]);
+        header('Location: index.php?module=profil&action=affichage_profil');
+
+
+//        $req = self::$bdd->prepare("SELECT * FROM composer WHERE idTop_composer = ?");
+//        $req->execute([$idtop]);
+//        $result = $req->fetch();
+//        if (!empty($result)) {
+//            $reqVideTop = self::$bdd->prepare("DELETE FROM composer WHERE idTop_composer = ?");
+//            $reqVideTop->execute([$idtop]);
+//        }
+//        $reqVideTop = self::$bdd->prepare("DELETE FROM composer NATURAL JOIN top NATURAL JOIN avistop NATURAL JOIN Signalement WHERE idTop_composer = ?");
+//        $reqVideTop->execute([$idtop]);
+//        try {
+//            $reqSupprTop = self::$bdd->prepare("DELETE FROM top WHERE idTop = ?");
+//            $reqSupprTop->execute([$idtop]);
+//            header('Location: index.php?module=profil&action=affichage_profil');
+//        } catch (PDOException $e) {
+//        }
     }
 }
