@@ -94,10 +94,15 @@ class VueTop
                 <h1 class="text-center"><?php echo $nomTop; ?></h1>
             </div>
             <div class="sectionClassement">
-                <!--                <div class="boutonsPageTop mb-3">-->
-                <!--                    <button type="button" class="btn btn-outline-success">Enregistrer</button>-->
-                <!--                    <button type="button" class="btn btn-outline-danger">Supprimer</button>-->
-                <!--                </div>-->
+                <div class="boutonsPageTop mb-3">
+                    <form action="index.php?module=top&action=top_commu" method="post">
+                        <input type="hidden" name="idUtilisateur"
+                               value="<?php echo $tab['idUtilisateur']; ?>">
+                        <input type="hidden" name="idTop" value="<?php echo $idtop; ?>">
+                        <button type="submit" class="btn btn-outline-success">Enregistrer</button>
+                    </form>
+                    <!--                    <button type="button" class="btn btn-outline-danger">Supprimer</button>-->
+                </div>
                 <div class="tableClassement">
                     <table class="table table-bordered">
                         <thead class="table-dark">
@@ -114,9 +119,12 @@ class VueTop
                                 <td></td>
                                 <td><img src="<?php echo $value['image']; ?>" alt="Image Vignette"></td>
                                 <td>
-                                    <button type="button" type="submit" value="Submit"
-                                            class="btn btn-dark"><?php echo $value['libelle']; ?>
-                                    </button>
+                                    <form action="index.php?module=oeuvre&action=affichage_oeuvre" method="POST">
+                                        <input type="hidden" name="idOeuvre" value="<?php echo $value['idOeuvre']; ?>">
+                                        <button type="submit" value="Submit"
+                                                class="btn btn-dark"><?php echo $value['libelle']; ?>
+                                        </button>
+                                    </form>
                                 </td>
                                 <td>
                                     <form action="index.php?module=top&action=suppr_oeuvre" method="POST">
@@ -201,9 +209,12 @@ class VueTop
                                 <td></td>
                                 <td><img src="<?php echo $value['image']; ?>" alt="Image Vignette"></td>
                                 <td>
-                                    <button type="button" type="submit" value="Submit"
-                                            class="btn btn-dark"><?php echo $value['libelle']; ?>
-                                    </button>
+                                    <form action="index.php?module=oeuvre&action=affichage_oeuvre" method="POST">
+                                        <input type="hidden" name="idOeuvre" value="<?php echo $value['idOeuvre']; ?>">
+                                        <button type="submit" value="Submit"
+                                                class="btn btn-dark"><?php echo $value['libelle']; ?>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php } ?>

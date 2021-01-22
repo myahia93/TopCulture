@@ -64,6 +64,9 @@ class ModTop
             case "top_recent":
                 $this->contTop->topCommuSimple();
                 break;
+            case "suppr_top":
+                $this->contTop->supprimeTop();
+                break;
         }
     }
 

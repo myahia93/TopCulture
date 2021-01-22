@@ -129,11 +129,15 @@ class ModeleTop extends ConnexionBD
         } else {
             $position = 1;
         }
-        try {
-            $requeteAjoutOeuvre = self::$bdd->prepare("INSERT INTO composer VALUES(?,?,?)");
-            $requeteAjoutOeuvre->execute([$idTop, $idOeuvre, $position]);
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Ajout réussi</div></div>';
-        } catch (PDOException $e) {
+        if ($position <= 10) {
+            try {
+                $requeteAjoutOeuvre = self::$bdd->prepare("INSERT INTO composer VALUES(?,?,?)");
+                $requeteAjoutOeuvre->execute([$idTop, $idOeuvre, $position]);
+                echo '<div class="container"><div class="alert alert-success text-center" role="alert">Ajout réussi</div></div>';
+            } catch (PDOException $e) {
+            }
+        } else {
+            echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Un top peut comporter au maximun 10 éléments</div></div>';
         }
     }
 
@@ -341,6 +345,19 @@ class ModeleTop extends ConnexionBD
             } else {
                 echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà signaler ce message</div></div>';
             }
+        } catch (PDOException $e) {
+        }
+    }
+
+    //supprime top
+    public function modeleSupprTop($idtop)
+    {
+        try {
+            $reqVideTop = self::$bdd->prepare("DELETE FROM composer WHERE idTop_composer = ?");
+            $reqVideTop->execute([$idtop]);
+            $reqSupprTop = self::$bdd->prepare("DELETE FROM top WHERE idTop = ?");
+            $reqSupprTop->execute([$idtop]);
+            header('Location: index.php?module=profil&action=affichage_profil');
         } catch (PDOException $e) {
         }
     }

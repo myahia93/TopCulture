@@ -106,7 +106,7 @@ class ContTop
         if (isset($_POST['avis']) && isset($_POST['idTop']) && $_POST['idUtilisateur']) {
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
-            $avis = addslashes(strip_tags($_POST['avis']));
+            $avis = strip_tags($_POST['avis']);
             $this->modeleTop->modeleCreationAvis($idtop, $avis);
             $this->topCommu($idtop, $iduser);
         }
@@ -139,7 +139,7 @@ class ContTop
     {
         if (isset($_POST['idAvis']) && isset($_POST['avis']) && isset($_POST['idUtilisateur']) && isset($_POST['idAvis'])) {
             $idAvis = addslashes(strip_tags($_POST['idAvis']));
-            $avis = addslashes(strip_tags($_POST['avis']));
+            $avis = strip_tags($_POST['avis']);
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $this->modeleTop->modeleModifAvis($idAvis, $avis);
@@ -176,5 +176,13 @@ class ContTop
     public function topCommuSimple() {
         $topCommu = $this->modeleTop->modeleTopCommuSimple();
         $this->vueTop->vueTopCommuSimple($topCommu);
+    }
+
+    //supression du top
+    public function supprimeTop() {
+        if (isset($_POST['idTop'])) {
+            $idtop = addslashes(strip_tags($_POST['idTop']));
+            $this->modeleTop->modeleSupprTop($idtop);
+        }
     }
 }

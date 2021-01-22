@@ -62,37 +62,46 @@ class VueProfil
                     <h2 class="text-center">Vos Top</h2>
                 </div>
                 <?php foreach ($top as $key => $value) { ?>
+                    <!--                    <div class="top mb-3">-->
+                    <!--                        <div class="titreTop">-->
+                    <!--                            <h3>Titre :</h3>-->
+                    <!--
+                                            <form class="d-inline-block" action="index.php?module=top&action=mon_top"-->
+                    <!--                                  method="POST">-->
+                    <!--                                <input type="hidden" name="nomTop" value="--><?php //echo $value['nomTop']; ?><!--">-->
+                    <!--                                <button type="submit"-->
+                    <!--                                        class="btn btn-info btn-lg ">--><?php //echo $value['nomTop']; ?><!--</button>-->
+                    <!--                            </form>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="themeTop">-->
+                    <!--                            <h3>Thème : </h3>-->
+                    <!--                            <p>--><?php //echo $value['nom']; ?><!--</p>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                     <div class="top mb-3">
-                        <div class="titreTop">
-                            <h3>Titre :</h3>
-                            <!--                            <p>Nulla mollis commodo auctor.</p>-->
-                            <form class="d-inline-block" action="index.php?module=top&action=mon_top"
-                                  method="POST">
-                                <input type="hidden" name="nomTop" value="<?php echo $value['nomTop']; ?>">
-                                <button type="submit"
-                                        class="btn btn-info btn-lg "><?php echo $value['nomTop']; ?></button>
-                            </form>
-                        </div>
-                        <div class="themeTop">
-                            <h3>Thème : </h3>
-                            <p><?php echo $value['nom']; ?></p>
-                        </div>
-                    </div>
-                    <div class="top mb-3">
-                        <div class="col-4 d-inline-block text-center ">
+                        <div class="col-4 d-inline-block text-center mb-3">
                             <h4 style="color: rgb(153, 40, 40); font-weight: bold;"> Titre : </h4>
-                            <form action="" method="post">
-                                <button type="submit" class="btn btn-success btn-lg">The best</button>
+                            <form action="index.php?module=top&action=top_commu" method="post">
+                                <input type="hidden" name="idUtilisateur"
+                                       value="<?php echo $value['idUtilisateur']; ?>">
+                                <input type="hidden" name="idTop" value="<?php echo $value['idTop']; ?>">
+                                <button type="submit"
+                                        class="btn btn-dark btn-lg"><?php echo $value['nomTop']; ?></button>
                             </form>
                         </div>
                         <div class="col-4 d-inline-block text-center">
                             <h4 style="color: rgb(153, 40, 40); font-weight: bold;">Thème : </h4>
-                            <form action="" method="post">
-                                <button type="submit" class="btn btn-success btn-lg">FILM</button>
+                            <form action="index.php?module=theme&action=theme_selectionné" method="post">
+                                <input type="hidden" name="nomTheme" value="<?php echo $value['nom']; ?>">
+                                <button type="submit"
+                                        class="btn btn-dark btn-lg"><?php echo $value['nom']; ?></button>
                             </form>
                         </div>
-                        <div class="col-3 d-inline-block text-center ">
-                            <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
+                        <div class="col-3 d-inline-block text-center">
+                            <form action="index.php?module=top&action=suppr_top" method="post">
+                                <input type="hidden" name="idTop" value="<?php echo $value['idTop']; ?>">
+                                <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
+                            </form>
                         </div>
                     </div>
                 <?php } ?>

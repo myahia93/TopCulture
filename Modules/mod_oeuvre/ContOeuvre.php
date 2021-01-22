@@ -38,8 +38,8 @@ class ContOeuvre
         if (isset($_POST['avis']) && isset($_POST['note']) && isset($_POST['oeuvre']) && isset($_POST['titre'])) {
             $oeuvre = addslashes(strip_tags($_POST['oeuvre']));
             $note = addslashes(strip_tags($_POST['note']));
-            $avis = addslashes(strip_tags($_POST['avis']));
-            $titre = addslashes(strip_tags($_POST['titre']));
+            $avis = strip_tags($_POST['avis']);
+            $titre = strip_tags($_POST['titre']);
             if (isset($_SESSION['nom_utilisateur'])) {
                 $oeuvre = $this->modeleOeuvre->modeleDonnerUnAvis($oeuvre, $note, $avis, $titre);
 
@@ -66,8 +66,8 @@ class ContOeuvre
             $idAvis = addslashes(strip_tags($_POST['idAvis']));
             $oeuvre = addslashes(strip_tags($_POST['oeuvre']));
             $note = addslashes(strip_tags($_POST['note']));
-            $avis = addslashes(strip_tags($_POST['avis']));
-            $titre = addslashes(strip_tags($_POST['titre']));
+            $avis = strip_tags($_POST['avis']);
+            $titre = strip_tags($_POST['titre']);
             $this->modeleOeuvre->modeleModifAvis($idAvis, $oeuvre, $note, $avis, $titre);
             $this->affichagePageOeuvre($oeuvre);
         }

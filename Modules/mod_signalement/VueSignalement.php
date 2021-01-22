@@ -103,7 +103,7 @@ class VueSignalement
                     </div>
                     <div class="collapse" id="collapseExample2">
                         <div class="sectionCommentaires">
-                            <h2 class="my-3">Signalements des avis :</h2>
+                            <h2 class="my-3">Signalements des avis sur les oeuvres :</h2>
                             <?php foreach ($signal as $key => $value) { ?>
                                 <div class="commentaire">
                                     <div class="comUtilisateur">
@@ -138,7 +138,7 @@ class VueSignalement
                     </div>
                     <div class="collapse" id="collapseExample3">
                         <div class="sectionCommentaires">
-                            <h2 class="my-3">Signalements des avis :</h2>
+                            <h2 class="my-3">Signalements des avis sur les Tops:</h2>
                             <?php foreach ($signalTop as $key => $value) { ?>
                                 <div class="commentaire">
                                     <div class="comUtilisateur">

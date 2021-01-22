@@ -58,7 +58,6 @@ switch ($module) {
         die("interdiction");
 }
 ?>
-
 <!-- Menu de Navigation -->
 
 <header>
@@ -140,6 +139,18 @@ switch ($module) {
         </div>
     </nav>
 </header>
+
+<?php
+if ($module == 'acceuil') {
+    ?>
+    <style>
+        body {
+            margin-top: 144px;
+        }
+    </style>
+    <?php
+}
+?>
 
 <?php
 if ($module == "acceuil") {
