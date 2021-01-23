@@ -75,7 +75,7 @@ class ModeleSignalement extends ConnexionBD
         try {
             $req = self::$bdd->prepare("DELETE FROM signalement WHERE idSignalement = ?");
             $req->execute([$idSignal]);
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Le message a été archivé</div></div>';
+            return "Le message a été archivé";
         } catch (PDOException $e) {
         }
     }
@@ -84,26 +84,19 @@ class ModeleSignalement extends ConnexionBD
 
     public function modeleCreationMessage($message)
     {
-        if (isset($_SESSION['nom_utilisateur'])) {
-            try {
-                //on recupere l'id de l'utilisateur
-                $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
-                $selectID->execute([$_SESSION['nom_utilisateur']]);
-                $recupId = $selectID->fetch();
-                $iduser = $recupId["idUtilisateur"];
-                $date = date('Y-m-d');
-                $type = 'message';
-
-                $requeteSignal = self::$bdd->prepare("INSERT INTO signalement(typeSignalement, message, idUtilisateur, dateSignal) VALUES(?,?,?,?);");
-                $requeteSignal->execute([$type, $message, $iduser, $date]);
-                echo '<div class="container"><div class="alert alert-success text-center" role="alert">Le message a été envoyé</div></div>';
-            } catch (PDOException $e) {
-            }
-        } else {
-            echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Connectez-vous pour pouvoir envoyé un message</div></div>';
+        try {
+            //on recupere l'id de l'utilisateur
+            $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
+            $selectID->execute([$_SESSION['nom_utilisateur']]);
+            $recupId = $selectID->fetch();
+            $iduser = $recupId["idUtilisateur"];
+            $date = date('Y-m-d');
+            $type = 'message';
+            $requeteSignal = self::$bdd->prepare("INSERT INTO signalement(typeSignalement, message, idUtilisateur, dateSignal) VALUES(?,?,?,?);");
+            $requeteSignal->execute([$type, $message, $iduser, $date]);
+            return "Le message a été envoyé";
+        } catch (PDOException $e) {
         }
-
-
     }
 
 }

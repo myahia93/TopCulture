@@ -95,12 +95,14 @@ class VueTop
             </div>
             <div class="sectionClassement">
                 <div class="boutonsPageTop mb-3">
-                    <form action="index.php?module=top&action=top_commu" method="post">
-                        <input type="hidden" name="idUtilisateur"
-                               value="<?php echo $tab['idUtilisateur']; ?>">
-                        <input type="hidden" name="idTop" value="<?php echo $idtop; ?>">
-                        <button type="submit" class="btn btn-outline-success">Enregistrer</button>
-                    </form>
+<!--                    <form action="index.php?module=top&action=top_commu" method="post">-->
+                    <!--                        <input type="hidden" name="idUtilisateur"-->
+                    <!--                               value="--><?php //echo $tab['idUtilisateur'];
+                    ?><!--">-->
+                    <!--                        <input type="hidden" name="idTop" value="--><?php //echo $idtop;
+                    ?><!--">-->
+                    <!--                        <button type="submit" class="btn btn-outline-success">Enregistrer</button>-->
+                    <!--                    </form>-->
                     <!--                    <button type="button" class="btn btn-outline-danger">Supprimer</button>-->
                 </div>
                 <div class="tableClassement">

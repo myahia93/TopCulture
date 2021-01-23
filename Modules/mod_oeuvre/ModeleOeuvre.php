@@ -62,16 +62,11 @@ class ModeleOeuvre extends ConnexionBD
                     $resultNote = $result[0];
                     $requeteNote = self::$bdd->prepare("UPDATE oeuvre SET note = ? WHERE idOeuvre = ?");
                     $requeteNote->execute([$resultNote, $oeuvre]);
-                    echo '<div class="container"><div class="alert alert-success text-center" role="alert">Votre avis a été pris en compte !</div></div>';
-                    //header("Location : index.php?module=oeuvre&action=affichage_oeuvre");
-                    return $oeuvre;
-
+                    return true;
                 } catch (PDOException $e) {
-                    echo "Echec de l'envoi de votre avis";
                 }
             } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà donner votre avis</div></div>';
-                return $oeuvre;
+                return false;
             }
         } catch (PDOException $e) {
         }

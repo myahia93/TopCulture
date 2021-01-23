@@ -35,14 +35,21 @@ class ContSignalement
     public function envoyerMessage()
     {
         if (isset($_POST['message'])) {
-            $this->modeleSignalement->modeleCreationMessage(addslashes(strip_tags($_POST['message'])));
+            if (isset($_SESSION['nom_utilisateur'])) {
+                $msg = $this->modeleSignalement->modeleCreationMessage(addslashes(strip_tags($_POST['message'])));
+                $this->vueSignalement->vueAlertSucces($msg);
+            } else {
+                $this->vueSignalement->vueAlertWarning("Connectez-vous pour pouvoir envoyé un message");
+            }
         }
         $this->affichagePageSignalement();
     }
 
-    public function archiveSignal() {
+    public function archiveSignal()
+    {
         if (isset($_POST['idSignal'])) {
-            $this->modeleSignalement->modeleArchiveSignal(addslashes(strip_tags($_POST['idSignal'])));
+            $msg = $this->modeleSignalement->modeleArchiveSignal(addslashes(strip_tags($_POST['idSignal'])));
+            $this->vueSignalement->vueAlertSucces($msg);
         }
         $this->affichagePageSignalement();
     }

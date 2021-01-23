@@ -36,7 +36,7 @@ class ContTheme
     public function afficheRechercheOeuvre()
     {
         if (isset($_POST['recherche'])) {
-            $recherche = strip_tags($_POST['recherche']);
+            $recherche = strip_tags(ltrim(rtrim($_POST['recherche'])));
             $tab = $this->modeleTheme->modeleListeRecherche($recherche);
             $this->vueTheme->vueAfficheListeRecherche($tab, $recherche);
         }

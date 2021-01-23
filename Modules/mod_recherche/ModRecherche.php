@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 include_once "ContRecherche.php";
 
@@ -9,24 +13,8 @@ class ModRecherche
 
     public function __construct()
     {
-//        if (isset($_GET['action'])) {
-//            $action = addslashes(strip_tags($_GET['action']));
-//        } else {
-//            $action = "search";
-//        }
-
         $this->contRecherche = new ContRecherche();
-        $this->contRecherche->testAjax();
-//        $this->determineAction($action);
+        $this->contRecherche->barreDeRechercheAjax();
     }
-
-//    public function determineAction($action)
-//    {
-//        switch ($action) {
-//            case "search":
-//                $this->contRecherche->testAjax();
-//                break;
-//        }
-//    }
 
 }

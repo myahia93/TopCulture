@@ -26,15 +26,11 @@ class VueProfil
                     <div class="description mb-4">
                         <h2>Description :</h2>
                         <div class="paragrapheDescription">
-                            <p>Ut vestibulum, eros vitae volutpat interdum, urna sapien hendrerit purus, at lobortis
-                                tellus lectus a nulla. Donec dictum orci at bibendum luctus. Suspendisse non gravida
-                                leo, ac vehicula nibh. Mauris nec lacus eu neque dignissim elementum vitae vel metus.
-                                Vivamus risus erat, mattis a ornare et, tempor a orci. Mauris gravida maximus nibh,
-                                accumsan sodales odio interdum vel. Praesent sem ligula, finibus vitae venenatis quis,
-                                viverra eu purus. Pellentesque dignissim nulla vel lectus maximus interdum. Suspendisse
-                                et ex id tellus scelerisque ultricies eget id augue. Sed felis orci, egestas at sapien
-                                at, hendrerit varius ipsum. Integer accumsan neque non quam hendrerit dignissim. In
-                                facilisis tellus mollis aliquam lobortis. Suspendisse potenti.</p>
+                            <p><?php if ($tab['description'] != null) {
+                                    echo $tab['description'];
+                                } else { ?>
+                                    Editez le profil pour pouvoir ajouter une description.
+                                <?php } ?></p>
                         </div>
                     </div>
                     <div class="niveau">
@@ -52,9 +48,13 @@ class VueProfil
                             <p><?php echo $tab['date_creation']; ?></p>
                         </div>
                     </div>
-                    <div class="boutonEdition">
-                        <button type="button" class="btn btn-success btn-lg">Éditer mon profil</button>
-                    </div>
+                    <form action="index.php?module=profil&action=form_edition_profil" method="post">
+                        <input type="hidden" name="description"
+                               value="<?php echo $tab['description']; ?>">
+                        <div class="boutonEdition">
+                            <button type="submit" class="btn btn-success btn-lg">Éditer mon profil</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="sectionTops mb-4">
@@ -110,6 +110,36 @@ class VueProfil
         </div>
         <?php
 
+    }
+
+    public function vueEditerProfil($description)
+    {
+        ?>
+        <!-- Page édition profil -->
+
+        <div class="container">
+            <div class="titrePage my-4">
+                <h1 class="text-center"> Éditer Profil</h1>
+            </div>
+            <div class="row">
+                <div class="col sectionDescription position-relative col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-4">
+                    <div class="descriptionProfil mb-4">
+                        <form action="index.php?module=profil&action=maj_profil" method="POST">
+                            <div class="espaceCom mx-auto">
+                                <label for="commentaire"><h2> Changer la description :</h2></label>
+                            </div>
+
+                            <textarea name="description" id="" rows="5"><?php echo $description; ?></textarea>
+
+                            <div class="boutonEdition">
+                                <button type="submit" class="btn btn-success btn-lg">Mettre à jour mon profil</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 
 }

@@ -24,42 +24,36 @@ class ModeleTop extends ConnexionBD
 
     public function modeleCreationTop($nomTop, $theme)
     {
-        if (isset($_SESSION['nom_utilisateur'])) {
-            try {
-                //on recupere l'id de l'utilisateur
-                $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
-                $selectID->execute([$_SESSION['nom_utilisateur']]);
-                $recupId = $selectID->fetch();
-                $iduser = $recupId["idUtilisateur"];
+        try {
+            //on recupere l'id de l'utilisateur
+            $selectID = self::$bdd->prepare("SELECT idUtilisateur FROM utilisateur WHERE pseudo = ?;");
+            $selectID->execute([$_SESSION['nom_utilisateur']]);
+            $recupId = $selectID->fetch();
+            $iduser = $recupId["idUtilisateur"];
 
+            //on vérifie que l'utilisateur na pas deja de top ayant ce nom
+            $selectNomTop = self::$bdd->prepare("SELECT nomTop FROM top WHERE nomTop = ? AND idUtilisateur = ? AND idTheme = ? ");
+            $selectNomTop->execute([$nomTop, $iduser, $theme]);
+            $recupNomTop = $selectNomTop->fetch();
+            if (empty($recupNomTop["nomTop"])) {
+                try {
+                    $requeteCreationTop = self::$bdd->prepare("INSERT INTO top(nomTop, idUtilisateur, idTheme) VALUES(:nomTop, :idUtilisateur, :idTheme)");
+                    $requeteCreationTop->bindParam(':nomTop', $nomTop);
+                    $requeteCreationTop->bindParam(':idUtilisateur', $iduser);
+                    $requeteCreationTop->bindParam(':idTheme', $theme);
+                    $requeteCreationTop->execute();
+                    //$requeteCreationTop->execute([$nomTop, $iduser, $this->theme]);
 
-                //on vérifie que l'utilisateur na pas deja de top ayant ce nom
-                $selectNomTop = self::$bdd->prepare("SELECT nomTop FROM top WHERE nomTop = ? AND idUtilisateur = ? AND idTheme = ? ");
-                $selectNomTop->execute([$nomTop, $iduser, $theme]);
-                $recupNomTop = $selectNomTop->fetch();
-                if (empty($recupNomTop["nomTop"])) {
-                    try {
-                        $requeteCreationTop = self::$bdd->prepare("INSERT INTO top(nomTop, idUtilisateur, idTheme) VALUES(:nomTop, :idUtilisateur, :idTheme)");
-                        $requeteCreationTop->bindParam(':nomTop', $nomTop);
-                        $requeteCreationTop->bindParam(':idUtilisateur', $iduser);
-                        $requeteCreationTop->bindParam(':idTheme', $theme);
-                        $requeteCreationTop->execute();
-                        //$requeteCreationTop->execute([$nomTop, $iduser, $this->theme]);
-                        echo '<div class="container"><div class="alert alert-success text-center" role="alert"> Le Top a été créé !</div></div>';
-                        return true; //ajout
-                    } catch (PDOException $e) {
-                        echo "Echec création du top";
-                    }
-                } else {
-                    echo '<div class="container"><div class="alert alert-warning text-center" role="alert"> le top ' . $theme . ' : ' . $nomTop . ' existe déjà</div></div>';
-                    return false;
+                    return true; //ajout
+                } catch (PDOException $e) {
+                    echo "Echec création du top";
                 }
-            } catch (PDOException $e) {
+            } else {
+                return false;
             }
-        } else {
-            echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Connectez-vous pour pouvoir créer votre Top.</div></div>';
-            return false;
+        } catch (PDOException $e) {
         }
+
     }
 
     //Fonction pour l'affichage
@@ -133,11 +127,11 @@ class ModeleTop extends ConnexionBD
             try {
                 $requeteAjoutOeuvre = self::$bdd->prepare("INSERT INTO composer VALUES(?,?,?)");
                 $requeteAjoutOeuvre->execute([$idTop, $idOeuvre, $position]);
-                echo '<div class="container"><div class="alert alert-success text-center" role="alert">Ajout réussi</div></div>';
+                return true;
             } catch (PDOException $e) {
             }
         } else {
-            echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Un top peut comporter au maximun 10 éléments</div></div>';
+            return false;
         }
     }
 
@@ -153,17 +147,10 @@ class ModeleTop extends ConnexionBD
             $requeteupdate->execute([$idTop, $position]);
             $requeteSuppr = self::$bdd->prepare("DELETE FROM composer WHERE idOeuvre_composer = ? AND idTop_composer = ?");
             $requeteSuppr->execute([$idOeuvre, $idTop]);
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Suppression réussi</div></div>';
+            return "Suppression réussi";
         } catch (PDOException $e) {
         }
     }
-
-    //A FAIRE
-    public function modeleTopEnregistre()
-    {
-
-    }
-
 
     //fonction pour les tops de la communauté
     public function modeleTopCommu()
@@ -249,14 +236,12 @@ class ModeleTop extends ConnexionBD
                 try {
                     $requeteCreationAvisTop = self::$bdd->prepare("INSERT INTO avistop VALUES(?,?,?,?,?)");
                     $requeteCreationAvisTop->execute([$idAvis, $avis, $date, $idtop, $iduser]);
-                    return $idtop;
+                    return null;
 
                 } catch (PDOException $e) {
-                    echo "Echec de l'envoi de votre avis";
                 }
             } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà donner votre avis</div></div>';
-                return $idtop;
+                return "Vous avez déjà donner votre avis";
             }
         } catch (PDOException $e) {
         }
@@ -287,7 +272,7 @@ class ModeleTop extends ConnexionBD
             $reqSupprAvis = self::$bdd->prepare("DELETE FROM avis WHERE idAvis = ?");
             $reqSupprAvis->execute([$idAvis]);
 
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Cet avis a bien été supprimé</div></div>';
+            return "Cet avis a bien été supprimé";
         } catch (PDOException $e) {
         }
     }
@@ -313,7 +298,7 @@ class ModeleTop extends ConnexionBD
             $date = date('Y-m-d');
             $reqModifAvis = self::$bdd->prepare("UPDATE avistop SET critique = ?, dateEnvoi = ? WHERE idAvis = ?;");
             $reqModifAvis->execute([$avis, $date, $idAvis]);
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Vous avis a bien été modifer</div></div>';
+            return "Vous avis a bien été modifer";
         } catch (PDOException $e) {
         }
     }
@@ -341,9 +326,9 @@ class ModeleTop extends ConnexionBD
             if (empty($result)) {
                 $requeteSignal = self::$bdd->prepare("INSERT INTO signalement(typeSignalement, message, idUtilisateur, dateSignal, idUtilSignal, idTop) VALUES(?,?,?,?,?,?);");
                 $requeteSignal->execute([$type, $message, $iduser, $date, $iduser, $idtop]);
-                echo '<div class="container"><div class="alert alert-success text-center" role="alert">Le message a été signaler</div></div>';
+                return true;
             } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà signaler ce message</div></div>';
+                return false;
             }
         } catch (PDOException $e) {
         }
@@ -361,22 +346,5 @@ class ModeleTop extends ConnexionBD
         $reqSupprTop = self::$bdd->prepare("DELETE FROM top WHERE idTop = ?");
         $reqSupprTop->execute([$idtop]);
         header('Location: index.php?module=profil&action=affichage_profil');
-
-
-//        $req = self::$bdd->prepare("SELECT * FROM composer WHERE idTop_composer = ?");
-//        $req->execute([$idtop]);
-//        $result = $req->fetch();
-//        if (!empty($result)) {
-//            $reqVideTop = self::$bdd->prepare("DELETE FROM composer WHERE idTop_composer = ?");
-//            $reqVideTop->execute([$idtop]);
-//        }
-//        $reqVideTop = self::$bdd->prepare("DELETE FROM composer NATURAL JOIN top NATURAL JOIN avistop NATURAL JOIN Signalement WHERE idTop_composer = ?");
-//        $reqVideTop->execute([$idtop]);
-//        try {
-//            $reqSupprTop = self::$bdd->prepare("DELETE FROM top WHERE idTop = ?");
-//            $reqSupprTop->execute([$idtop]);
-//            header('Location: index.php?module=profil&action=affichage_profil');
-//        } catch (PDOException $e) {
-//        }
     }
 }

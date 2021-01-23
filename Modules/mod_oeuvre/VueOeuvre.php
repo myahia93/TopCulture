@@ -69,17 +69,20 @@ class VueOeuvre
                         </div>
                         <div class="boutonSignalement" style="text-align : right;">
                             <?php if (isset($_SESSION['nom_utilisateur']) && $_SESSION['nom_utilisateur'] == $value['pseudo']) { ?>
-                                <form class="d-inline-block" action="index.php?module=oeuvre&action=form_modif_avis" method="POST">
+                                <form class="d-inline-block" action="index.php?module=oeuvre&action=form_modif_avis"
+                                      method="POST">
                                     <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
                                     <button type="submit" class="btn btn-success btn-lg ">Modifier</button>
                                 </form>
-                                <form class="d-inline-block" action="index.php?module=oeuvre&action=suppr_avis" method="POST">
+                                <form class="d-inline-block" action="index.php?module=oeuvre&action=suppr_avis"
+                                      method="POST">
                                     <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
                                     <input type="hidden" name="idOeuvre" value="<?php echo $result['idOeuvre']; ?>">
                                     <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
                                 </form>
                             <?php } else if ($admin == 1) { ?>
-                                <form class="d-inline-block" action="index.php?module=oeuvre&action=suppr_avis" method="POST">
+                                <form class="d-inline-block" action="index.php?module=oeuvre&action=suppr_avis"
+                                      method="POST">
                                     <input type="hidden" name="idAvis" value="<?php echo $value['idAvis'] ?>">
                                     <input type="hidden" name="idOeuvre" value="<?php echo $result['idOeuvre']; ?>">
                                     <button type="submit" class="btn btn-danger btn-lg ">Supprimer</button>
@@ -173,5 +176,23 @@ class VueOeuvre
             </div>
         </div>
         <?php
+    }
+
+
+    //FONCTION ALERT
+    public function vueAlertSucces($texte)
+    {
+        echo '
+<div class="container">
+    <div class="alert alert-success text-center" role="alert">' . $texte . '</div>
+</div>';
+    }
+
+    public function vueAlertWarning($texte)
+    {
+        echo '
+<div class="container">
+    <div class="alert alert-warning text-center" role="alert">' . $texte . '</div>
+</div>';
     }
 }

@@ -39,4 +39,13 @@ class ModeleProfil extends ConnexionBD
         } catch (PDOException $e) {
         }
     }
+
+    public function modeleMajProfil($description)
+    {
+        try {
+            $reqMaj = self::$bdd->prepare("UPDATE utilisateur SET description = ?, WHERE pseudo = ?");
+            $reqMaj->execute([$description, $_SESSION['nom_utilisateur']]);
+        } catch (PDOException $e) {
+        }
+    }
 }

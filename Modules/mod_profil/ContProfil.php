@@ -28,11 +28,22 @@ class ContProfil
     public function formEditionProfil()
     {
 //        $this->modeleProfil->modeleListeTop();
+        if (isset($_POST['description'])) {
+            $description = strip_tags($_POST['description']);
+            $this->vueProfil->vueEditerProfil($description);
+        }
     }
 
     public function majProfil()
     {
-//        $this->modeleProfil
-        $this->affichageProfil();
+        if (isset($_POST['description'])) {
+            $description = strip_tags($_POST['description']);
+            $this->modeleProfil->modeleMajProfil($description);
+            $this->affichageProfil();
+        } else {
+            $this->modeleProfil->modeleMajProfil($description);
+            $this->affichageProfil();
+        }
+
     }
 }

@@ -1,0 +1,9 @@
+/** Page de tutoriel **/
+
+.section_3 .gifSection_3 img {
+    width: 100%;
+    height: auto;
+}
+.containerPageTuto p {
+    font-size: 18px;
+}

@@ -58,6 +58,7 @@ class ModTop
                 break;
             case "signal_avis":
                 $this->contTop->signalAvis();
+                break;
             case "form_creationTopSimple":
                 $this->contTop->creationTopSimple();
                 break;

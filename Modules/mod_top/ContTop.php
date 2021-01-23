@@ -28,15 +28,22 @@ class ContTop
 
     public function creationTop()
     {
-        if (isset($_POST['nom_top']) && isset($_POST['theme'])) {
-            $nomTop = addslashes(strip_tags($_POST['nom_top']));
-            $theme = addslashes(strip_tags($_POST['theme']));
-            $top = $this->modeleTop->modeleCreationTop($nomTop, $theme);
-            if (!$top) {
-                $this->formCreationTop();
-            } else {
-                $this->pageModifTop($nomTop);
+        if (isset($_SESSION['nom_utilisateur'])) {
+            if (isset($_POST['nom_top']) && isset($_POST['theme'])) {
+                $nomTop = addslashes(strip_tags($_POST['nom_top']));
+                $theme = addslashes(strip_tags($_POST['theme']));
+                $top = $this->modeleTop->modeleCreationTop($nomTop, $theme);
+                if (!$top) {
+                    $this->vueTop->vueAlertWarning("Le top : " . $nomTop . " existe déja");
+                    $this->formCreationTop();
+                } else {
+                    $this->vueTop->vueAlertSucces("Le Top a été créé !");
+                    $this->pageModifTop($nomTop);
+                }
             }
+        } else {
+            $this->vueTop->vueAlertWarning("Connectez-vous pour pouvoir créer votre Top.");
+            $this->formCreationTop();
         }
     }
 
@@ -62,7 +69,13 @@ class ContTop
             $idOeuvre = addslashes(strip_tags($_POST['idOeuvre']));
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $nomTop = addslashes(strip_tags($_POST['nomTop']));
-            $this->modeleTop->modeleAjouterOeuvre($idOeuvre, $idtop);
+            $val = $this->modeleTop->modeleAjouterOeuvre($idOeuvre, $idtop);
+            if ($val) {
+                $this->vueTop->vueAlertSucces("Ajout réussi");
+            } else {
+                $this->vueTop->vueAlertWarning("Un top peut comporter au maximun 10 éléments");
+            }
+
             $this->pageModifTop($nomTop);
         }
     }
@@ -73,7 +86,8 @@ class ContTop
             $idOeuvre = addslashes(strip_tags($_POST['idOeuvre']));
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $nomTop = addslashes(strip_tags($_POST['nomTop']));
-            $this->modeleTop->modeleSupprOeuvre($idOeuvre, $idtop);
+            $msg = $this->modeleTop->modeleSupprOeuvre($idOeuvre, $idtop);
+            $this->vueTop->vueAlertSucces($msg);
             $this->pageModifTop($nomTop);
         }
     }
@@ -89,7 +103,7 @@ class ContTop
             $avis = $this->modeleTop->modeleAfficheAvis($idtop);
             $infotop = $this->modeleTop->modeleInfoTop($idtop);
             $estAdmin = $this->modeleTop->modeleEstAdmin();
-            $this->vueTop->vueAfficheTop($tab, $iduser, $idtop, $avis, $estAdmin,$infotop);
+            $this->vueTop->vueAfficheTop($tab, $iduser, $idtop, $avis, $estAdmin, $infotop);
         } else {
             $tab = $this->modeleTop->modeleTopUtilisateur($idtopRecup, $iduserRecup);
             $avis = $this->modeleTop->modeleAfficheAvis($idtopRecup);
@@ -107,7 +121,10 @@ class ContTop
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
             $avis = strip_tags($_POST['avis']);
-            $this->modeleTop->modeleCreationAvis($idtop, $avis);
+            $msg = $this->modeleTop->modeleCreationAvis($idtop, $avis);
+            if ($msg != null) {
+                $this->vueTop->vueAlertWarning($msg);
+            }
             $this->topCommu($idtop, $iduser);
         }
     }
@@ -119,7 +136,8 @@ class ContTop
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $idAvis = addslashes(strip_tags($_POST['idAvis']));
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
-            $this->modeleTop->modeleSupprAvis($idAvis, $idtop);
+            $msg = $this->modeleTop->modeleSupprAvis($idAvis, $idtop);
+            $this->vueTop->vueAlertSucces($msg);
             $this->topCommu($idtop, $iduser);
         }
 
@@ -142,7 +160,8 @@ class ContTop
             $avis = strip_tags($_POST['avis']);
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
             $idtop = addslashes(strip_tags($_POST['idTop']));
-            $this->modeleTop->modeleModifAvis($idAvis, $avis);
+            $msg = $this->modeleTop->modeleModifAvis($idAvis, $avis);
+            $this->vueTop->vueAlertSucces($msg);
             $this->topCommu($idtop, $iduser);
         }
     }
@@ -157,10 +176,15 @@ class ContTop
             $iduser = addslashes(strip_tags($_POST['idUtilisateur']));
             $idtop = addslashes(strip_tags($_POST['idTop']));
             if (isset($_SESSION['nom_utilisateur'])) {
-                $this->modeleTop->modeleSignalerAvis($idAvis, $pseudo, $dateEnvoi, $idtop, $iduser);
+                $msg = $this->modeleTop->modeleSignalerAvis($idAvis, $pseudo, $dateEnvoi, $idtop, $iduser);
+                if ($msg) {
+                    $this->vueTop->vueAlertSucces("Le message a été signaler");
+                } else {
+                    $this->vueTop->vueAlertWarning("Vous avez déjà signaler ce message");
+                }
                 $this->topCommu($idtop, $iduser);
             } else {
-                echo '<div class="container"><div class="alert alert-warning" role="alert">Vous devez être connecter pour pouvoir signalez un avis</div></div>';
+                $this->vueTop->vueAlertWarning("Vous devez être connecter pour pouvoir signalez un avis");
                 $this->topCommu($idtop, $iduser);
             }
         }
@@ -168,18 +192,21 @@ class ContTop
 
 
     //Affichage Page D'acceuil
-    public function creationTopSimple() {
+    public function creationTopSimple()
+    {
         $tab = $this->modeleTop->modeleListeTheme();
         $this->vueTop->vueCreationTopSimple($tab);
     }
 
-    public function topCommuSimple() {
+    public function topCommuSimple()
+    {
         $topCommu = $this->modeleTop->modeleTopCommuSimple();
         $this->vueTop->vueTopCommuSimple($topCommu);
     }
 
     //supression du top
-    public function supprimeTop() {
+    public function supprimeTop()
+    {
         if (isset($_POST['idTop'])) {
             $idtop = addslashes(strip_tags($_POST['idTop']));
             $this->modeleTop->modeleSupprTop($idtop);

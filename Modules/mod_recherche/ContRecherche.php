@@ -1,4 +1,8 @@
 <?php
+if (!defined('CONST_INCLUDE'))
+    die('Acces direct interdit !');
+?>
+<?php
 
 include_once "ModeleRecherche.php";
 include_once "VueRecherche.php";
@@ -15,12 +19,12 @@ class ContRecherche
         $this->vueRecherche = new VueRecherche();
     }
 
-    public function testAjax()
+    public function barreDeRechercheAjax()
     {
         if (isset($_GET['oeuvre'])) {
             $oeuvre = (string) trim($_GET['oeuvre']);
             $tab = $this->modeleRecherche->modeleAutoComp($oeuvre);
-            $this->vueRecherche->vueTestAjax($tab);
+            $this->vueRecherche->vueAutoComp($tab);
         }
     }
 }

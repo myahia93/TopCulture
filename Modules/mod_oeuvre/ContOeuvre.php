@@ -41,11 +41,15 @@ class ContOeuvre
             $avis = strip_tags($_POST['avis']);
             $titre = strip_tags($_POST['titre']);
             if (isset($_SESSION['nom_utilisateur'])) {
-                $oeuvre = $this->modeleOeuvre->modeleDonnerUnAvis($oeuvre, $note, $avis, $titre);
-
+                $msg = $this->modeleOeuvre->modeleDonnerUnAvis($oeuvre, $note, $avis, $titre);
+                if ($msg) {
+                    $this->vueOeuvre->vueAlertSucces("Votre avis a été pris en compte !");
+                } else {
+                    $this->vueOeuvre->vueAlertWarning("Vous avez déjà donner votre avis");
+                }
                 $this->affichagePageOeuvre($oeuvre);
             } else {
-                echo '<div class="container"><div class="alert alert-warning" role="alert">Connectez-vous pour pouvoir donner votre avis !</div></div>';
+                $this->vueOeuvre->vueAlertWarning("Connectez-vous pour pouvoir donner votre avis !");
                 $this->affichagePageOeuvre($oeuvre);
             }
         }
