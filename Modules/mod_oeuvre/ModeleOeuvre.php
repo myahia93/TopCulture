@@ -141,7 +141,7 @@ class ModeleOeuvre extends ConnexionBD
             $requeteNote = self::$bdd->prepare("UPDATE oeuvre SET note = ? WHERE idOeuvre = ?");
             $requeteNote->execute([$resultNote, $oeuvre]);
 
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Vous avis a bien été modifer</div></div>';
+            return "Vous avis a bien été modifer";
         } catch (PDOException $e) {
         }
     }
@@ -167,7 +167,7 @@ class ModeleOeuvre extends ConnexionBD
             $requeteNote = self::$bdd->prepare("UPDATE oeuvre SET note = ? WHERE idOeuvre = ?");
             $requeteNote->execute([$resultNote, $oeuvre]);
 
-            echo '<div class="container"><div class="alert alert-success text-center" role="alert">Cet avis a bien été supprimé</div></div>';
+            return "Cet avis a bien été supprimé";
         } catch (PDOException $e) {
         }
     }
@@ -193,16 +193,11 @@ class ModeleOeuvre extends ConnexionBD
             if (empty($result)) {
                 $requeteSignal = self::$bdd->prepare("INSERT INTO signalement(typeSignalement, message, idUtilisateur, dateSignal, idOeuvre) VALUES(?,?,?,?,?);");
                 $requeteSignal->execute([$type, $message, $iduser, $date, $idOeuvre]);
-                echo '<div class="container"><div class="alert alert-success text-center" role="alert">Le message a été signaler</div></div>';
+                return true;
             } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Vous avez déjà signaler ce message</div></div>';
+                return false;
             }
         } catch (PDOException $e) {
         }
-    }
-
-    public function modeleTestAjax()
-    {
-        echo 'ok';
     }
 }

@@ -28,21 +28,19 @@ class ModeleConnexion extends ConnexionBD
 
                             if (!empty($reponse)) {
                                 $_SESSION['nom_utilisateur'] = $nomUtilisateur;
+                                return null;
                                 header("Location: index.php?module=acceuil");
 
                             } else {
-                                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Mot de passe incorrecte</div></div>';
-                                return false;
+                                return 1;
                             }
                         } catch (PDOException $e) {
                         }
                     } else {
-                        echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Mot de passe incorrecte</div></div>';
-                        return false;
+                        return 2;
                     }
                 } else {
-                    echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Utilisateur innexistant</div></div>';
-                    return false;
+                    return 3;
                 }
             } catch (PDOException $e) {
             }
@@ -70,25 +68,18 @@ class ModeleConnexion extends ConnexionBD
                         $requeteAjoutUtilisateur->bindParam(':mot_de_passe', $mdp_hache);
                         $requeteAjoutUtilisateur->bindParam(':date_creation', $date);
                         $requeteAjoutUtilisateur->execute();
-                        echo '<div class="container"><div class="alert alert-success text-center" role="alert">Votre compte a été créer !</div></div>';
-                        return true;
+                        return null;
 
-                    } catch
-                    (PDOException $e) {
-                        echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Echec création de compte</div></div>';
-                        return false;
+                    } catch (PDOException $e) {
                     }
                 } else {
-                    echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Attention : les mots de passes ne correspondent pas</div></div>';
-                    return false;
+                    return "Attention : les mots de passes ne correspondent pas";
                 }
             } else {
-                echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Le pseudo ' . $nomUtilisateur . ' est déjà pris</div></div>';
-                return false;
+                return "Le pseudo " . $nomUtilisateur . " est déjà pris";
             }
         } else {
-            echo '<div class="container"><div class="alert alert-warning text-center" role="alert">Attention : nom utilisateur trop petit</div></div>';
-            return false;
+            return "Attention : nom utilisateur trop petit";
         }
     }
 

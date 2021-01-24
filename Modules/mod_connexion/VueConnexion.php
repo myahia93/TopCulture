@@ -86,4 +86,21 @@ class VueConnexion
         <?php
     }
 
+    //FONCTION ALERT
+    public function vueAlertSucces($texte)
+    {
+        echo '
+<div class="container">
+    <div class="alert alert-success text-center" role="alert">' . $texte . '</div>
+</div>';
+    }
+
+    public function vueAlertWarning($texte)
+    {
+        echo '
+<div class="container">
+    <div class="alert alert-warning text-center" role="alert">' . $texte . '</div>
+</div>';
+    }
+
 }

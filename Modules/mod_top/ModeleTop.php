@@ -42,11 +42,9 @@ class ModeleTop extends ConnexionBD
                     $requeteCreationTop->bindParam(':idUtilisateur', $iduser);
                     $requeteCreationTop->bindParam(':idTheme', $theme);
                     $requeteCreationTop->execute();
-                    //$requeteCreationTop->execute([$nomTop, $iduser, $this->theme]);
 
                     return true; //ajout
                 } catch (PDOException $e) {
-                    echo "Echec création du top";
                 }
             } else {
                 return false;

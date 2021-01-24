@@ -72,7 +72,8 @@ class ContOeuvre
             $note = addslashes(strip_tags($_POST['note']));
             $avis = strip_tags($_POST['avis']);
             $titre = strip_tags($_POST['titre']);
-            $this->modeleOeuvre->modeleModifAvis($idAvis, $oeuvre, $note, $avis, $titre);
+            $msg = $this->modeleOeuvre->modeleModifAvis($idAvis, $oeuvre, $note, $avis, $titre);
+            $this->vueOeuvre->vueAlertSucces($msg);
             $this->affichagePageOeuvre($oeuvre);
         }
     }
@@ -83,7 +84,8 @@ class ContOeuvre
         if (isset($_POST['idAvis']) && isset($_POST['idOeuvre'])) {
             $oeuvre = addslashes(strip_tags($_POST['idOeuvre']));
             $idAvis = addslashes(strip_tags($_POST['idAvis']));
-            $this->modeleOeuvre->modeleSupprAvis($idAvis, $oeuvre);
+            $msg = $this->modeleOeuvre->modeleSupprAvis($idAvis, $oeuvre);
+            $this->vueOeuvre->vueAlertSucces($msg);
             $this->affichagePageOeuvre($oeuvre);
         }
 
@@ -100,18 +102,17 @@ class ContOeuvre
             $oeuvre = addslashes(strip_tags($_POST['libelle']));
             $idOeuvre = addslashes(strip_tags($_POST['idOeuvre']));
             if (isset($_SESSION['nom_utilisateur'])) {
-                $this->modeleOeuvre->modeleSignalerAvis($idAvis, $pseudo, $dateEnvoi, $oeuvre, $idOeuvre);
+                $msg = $this->modeleOeuvre->modeleSignalerAvis($idAvis, $pseudo, $dateEnvoi, $oeuvre, $idOeuvre);
+                if ($msg) {
+                    $this->vueOeuvre->vueAlertSucces("Le message a été signaler");
+                } else {
+                    $this->vueOeuvre->vueAlertWarning("Vous avez déjà signaler ce message");
+                }
                 $this->affichagePageOeuvre($oeuvre);
             } else {
-                echo '<div class="container"><div class="alert alert-warning" role="alert">Vous devez être connecter pour pouvoir signalez un avis</div></div>';
+                $this->vueOeuvre->vueAlertWarning("Vous devez être connecter pour pouvoir signalez un avis");
                 $this->affichagePageOeuvre($oeuvre);
             }
         }
-    }
-
-    //AJAX
-    public function testAjax()
-    {
-        $this->modeleOeuvre->modeleTestAjax();
     }
 }

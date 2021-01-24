@@ -43,9 +43,6 @@ class ModOeuvre
             case "signal_avis":
                 $this->contOeuvre->signalAvis();
                 break;
-            case "recherche":
-                $this->contOeuvre->testAjax();
-                break;
         }
     }
 }
