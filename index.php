@@ -341,12 +341,12 @@ if ($module != 'recherche') {//Permet d'empecher le footer de se décuplé lors 
                     <h5 class="text-uppercase titreFooter">Contact</h5>
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!">Adresse</a>
+                            <a href="https://www.google.com/maps/place/IUT+De+Montreuil/@48.8624375,2.4619808,17z/data=!3m1!4b1!4m5!3m4!1s0x47e612ae6a4cd20d:0xfe5502b116430be!8m2!3d48.8624375!4d2.4641748">Adresse</a>
                             <p>156 rue de France,<br> 93100, Montreuil</p>
                         </li>
                         <li>
                             <a href="#!">Email</a>
-                            <p>topculture@gmail.com</p>
+                            <p>topculture.pro@gmail.com</p>
                         </li>
                         <li>
                             <a href="#!">Téléphone</a>
@@ -377,12 +377,6 @@ if ($module != 'recherche') {//Permet d'empecher le footer de se décuplé lors 
                         <li>
                             <a href="index.php?module=signalement">Signalement</a>
                         </li>
-                        <!--                        <li>-->
-                        <!--                            <a href="#!">Conditions de vente</a>-->
-                        <!--                        </li>-->
-                        <!--                        <li>-->
-                        <!--                            <a href="#!">Mentions légales</a>-->
-                        <!--                        </li>-->
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">

@@ -13,9 +13,6 @@ class VueOeuvre
         <!-- Section présentation du film -->
 
         <div class="container">
-            <!--            <div class="titrePage">-->
-            <!--                <h1 class="text-center">Films</h1>-->
-            <!--            </div>-->
             <div class="sectionPresentationFilm">
                 <div class="row">
                     <div class="presentationFilm col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12 mx-auto my-2">

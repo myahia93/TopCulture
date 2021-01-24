@@ -28,7 +28,6 @@ class ModeleConnexion extends ConnexionBD
 
                             if (!empty($reponse)) {
                                 $_SESSION['nom_utilisateur'] = $nomUtilisateur;
-                                return null;
                                 header("Location: index.php?module=acceuil");
 
                             } else {

@@ -62,22 +62,6 @@ class VueProfil
                     <h2 class="text-center">Vos Top</h2>
                 </div>
                 <?php foreach ($top as $key => $value) { ?>
-                    <!--                    <div class="top mb-3">-->
-                    <!--                        <div class="titreTop">-->
-                    <!--                            <h3>Titre :</h3>-->
-                    <!--
-                                            <form class="d-inline-block" action="index.php?module=top&action=mon_top"-->
-                    <!--                                  method="POST">-->
-                    <!--                                <input type="hidden" name="nomTop" value="--><?php //echo $value['nomTop']; ?><!--">-->
-                    <!--                                <button type="submit"-->
-                    <!--                                        class="btn btn-info btn-lg ">--><?php //echo $value['nomTop']; ?><!--</button>-->
-                    <!--                            </form>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="themeTop">-->
-                    <!--                            <h3>Thème : </h3>-->
-                    <!--                            <p>--><?php //echo $value['nom']; ?><!--</p>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <div class="top mb-3">
                         <div class="col-4 d-inline-block text-center mb-3">
                             <h4 style="color: rgb(153, 40, 40); font-weight: bold;"> Titre : </h4>

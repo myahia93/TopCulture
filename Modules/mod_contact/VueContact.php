@@ -30,10 +30,10 @@ class VueContact
                     <div class="sousSection">
                         <h2> Les avantages de Top Culture : </h2>
                         <ul>
-                            <li>Exprimez vos opinion via l'espace de notation et de commentaire disponible pour chaque œuvre.</li>
+                            <li>Exprimer vos opinion via l'espace de notation et de commentaire disponible pour chaque œuvre.</li>
                             <li>Faites vos tops avec un large panel de thèmes et d'œuvres pour chacun d'entre eux.</li>
                             <li>Partager vos tops au monde entier ou alors consulter ceux des autres utilisateurs.</li>
-                            <li>Retrouver tous vos tops réalisé sur votre page profil.</li>
+                            <li>Retrouver tous vos tops réalisés sur votre page profil.</li>
                         </ul>
                     </div>
                 </div>

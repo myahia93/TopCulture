@@ -23,21 +23,21 @@ class VueTuto
                 </div>
                 <div class="section_1">
                     <h2 class="text-center">1. Choix du nom et du thème</h2>
-                    <p class="text-center">Tout d'abord choisis un thème parmis ceux proposés. <br>
+                    <p class="text-center">Tout d'abord choisis un thème parmi ceux proposés. <br>
                         C'est fait ? OK alors maintenant chosi le nom que tu veux donner à ton top, choisi le bien.<br>
-                        Une fois que c'est fait il te suffit de cliquer sur le bouton "créer le top" et c'est parti !
+                        Une fois que cela est fait il te suffit de cliquer sur le bouton "créer le top" et c'est parti !
                     </p>
                     <img class="img-fluid border border-dark" src="Ressources/imgTuto/Capture1.png" alt="Création du Top">
                 </div>
                 <div class="section_1">
                     <h2 class="text-center">2. Comment remplir son top</h2>
-                    <p class="text-center">Maintenant que le top est crée il s'agit de le remplir.<br>
+                    <p class="text-center">Maintenant que le top est créé il s'agit de le remplir.<br>
                         Pour ce faire clique sur l'élément que tu veux ajouter à ton top, l'élément disparaitra de la
                         galerie et apparaîtra dans ton top</p>
                     <img class="img-fluid border border-dark" src="Ressources/imgTuto/Capture2.png" alt="Ajout d'élément au Top">
                 </div>
                 <div class="section_3">
-                    <h2 class="text-center">3. Changer le placement des éléments dans le tableau</h2>
+                    <h2 class="text-center">3. Changez le placement des éléments dans le tableau</h2>
                     <p class="text-center">Pour faire monter ou descendre un élément dans ton classement, il te suffit
                         de l'attraper avec ta souris puis de le mettre à sa nouvelle place.</p>
                     <div class="gifSection_3">

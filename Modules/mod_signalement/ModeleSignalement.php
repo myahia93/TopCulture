@@ -35,7 +35,7 @@ class ModeleSignalement extends ConnexionBD
     {
         try {
             $type = 'signalAvis';
-            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilisateur, idOeuvre, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY dateSignal DESC");
+            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilisateur, idOeuvre, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY idSignalement DESC");
             $req->execute([$type]);
             $result = $req->fetchAll();
             return $result;
@@ -47,7 +47,7 @@ class ModeleSignalement extends ConnexionBD
     {
         try {
             $type = 'signalAvisTop';
-            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilSignal, idUtilisateur, idTop, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY dateSignal DESC");
+            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilSignal, idUtilisateur, idTop, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY idSignalement DESC");
             $req->execute([$type]);
             $result = $req->fetchAll();
             return $result;
@@ -59,7 +59,7 @@ class ModeleSignalement extends ConnexionBD
     {
         try {
             $type = 'message';
-            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilisateur, idOeuvre, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY dateSignal DESC");
+            $req = self::$bdd->prepare("SELECT idSignalement, typeSignalement, message, dateSignal, idUtilisateur, idOeuvre, pseudo FROM signalement NATURAL JOIN utilisateur WHERE typeSignalement = ? ORDER BY idSignalement DESC");
             $req->execute([$type]);
             $result = $req->fetchAll();
             return $result;

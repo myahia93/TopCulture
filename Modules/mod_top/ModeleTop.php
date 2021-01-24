@@ -154,7 +154,7 @@ class ModeleTop extends ConnexionBD
     public function modeleTopCommu()
     {
         try {
-            $req = self::$bdd->prepare("SELECT idTop, nomTop, idUtilisateur, idTheme, pseudo, nom FROM utilisateur NATURAL JOIN top NATURAL JOIN theme;");
+            $req = self::$bdd->prepare("SELECT idTop, nomTop, idUtilisateur, idTheme, pseudo, nom FROM utilisateur NATURAL JOIN top NATURAL JOIN theme ORDER BY idTop DESC;");
             $req->execute();
             return $req;
         } catch (PDOException $e) {
@@ -165,7 +165,7 @@ class ModeleTop extends ConnexionBD
     public function modeleTopCommuSimple()
     {
         try {
-            $req = self::$bdd->prepare("SELECT idTop, nomTop, idUtilisateur, idTheme, pseudo, nom FROM utilisateur NATURAL JOIN top NATURAL JOIN theme ORDER BY idTop Limit 20;");
+            $req = self::$bdd->prepare("SELECT idTop, nomTop, idUtilisateur, idTheme, pseudo, nom FROM utilisateur NATURAL JOIN top NATURAL JOIN theme ORDER BY idTop DESC Limit 20;");
             $req->execute();
             return $req;
         } catch (PDOException $e) {
